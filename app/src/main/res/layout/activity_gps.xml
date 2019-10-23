@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/images"
+    tools:context=".GPS">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="77dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/ipn2" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="260dp"
+        android:layout_height="56dp"
+        android:layout_margin="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/transp"
+        android:text="RAF Rastreador de Herramientas"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+</LinearLayout>
+
+    <Button
+        android:id="@+id/rastreo"
+        android:layout_width="390dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Rastreo"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:background="@color/transp"
+        />
+
+    <Button
+        android:id="@+id/basededatos"
+        android:layout_width="390dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Base de Datos"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:background="@color/transp"/>
+    <Button
+        android:id="@+id/Historial"
+        android:layout_width="390dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Historial"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:background="@color/transp"/>
+    <Button
+        android:id="@+id/FAQ"
+        android:layout_width="390dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="FAQ"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:background="@color/transp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/ingresarherramienta"
+            android:layout_width="200dp"
+            android:layout_height="44dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="Ingresar Herramienta"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="@color/transp"/>
+
+        <Button
+            android:id="@+id/ingresarusuario"
+            android:layout_width="200dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Ingresar Usuario"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="@color/transp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/registrarse"
+        android:layout_width="390dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Registrarse"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:background="@color/transp"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
