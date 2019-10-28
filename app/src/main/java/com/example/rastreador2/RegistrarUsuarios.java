@@ -34,7 +34,10 @@ public class RegistrarUsuarios extends AppCompatActivity {
         SQLiteDatabase db=conn.getWritableDatabase();
 
 
-        String insert="INSERT INTO" +utilidades.TABLA_USUARIOS;
+        String insert="INSERT INTO" +utilidades.TABLA_USUARIOS
+                +"(" +utilidades.CAMPO_ID+","+utilidades.CAMPO_NOMBRE+","+utilidades.CAMPO_SERIE+"" +
+                ") VALUES ("+campoID.getText().toString()+", ' "+camponombre.getText().toString()+"','"
+        +camposerie.getText().toString()+"')";
 
        db.execSQL(insert);
 
