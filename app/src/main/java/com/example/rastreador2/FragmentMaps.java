@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class FragmentMaps extends SupportMapFragment implements OnMapReadyCallback {
-
+    private GoogleMap mMap;
     double lat, lon;
 
     public FragmentMaps() { }
@@ -37,6 +37,10 @@ public class FragmentMaps extends SupportMapFragment implements OnMapReadyCallba
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
+        mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
         Log.i("En el maps latitud", String.valueOf(lat));
         Log.i("En el maps longitud", String.valueOf(lon));
         LatLng latLng = new LatLng(lat, lon);

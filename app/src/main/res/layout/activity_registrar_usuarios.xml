@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/images"
+    tools:context=".RegistrarUsuarios">
+
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="Registro de Nueva Herramienta"
+        android:textColor="@android:color/background_light"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/campoID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#B9B9B9"
+        android:textSize="20dp"></EditText>
+
+
+    <EditText
+        android:id="@+id/camponombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="nombre"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#B9B9B9"
+        android:textSize="20dp"></EditText>
+
+
+
+    <EditText
+        android:id="@+id/camposerie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="serie"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#B9B9B9"
+        android:textSize="20dp"></EditText>
+
+    <Button
+        android:id="@+id/registrarherra"
+        android:layout_width="195dp"
+        android:layout_height="match_parent"
+        android:background="@color/transp"
+        android:text="Registrar"
+        android:textColor="#FFFFFF"
+        android:onClick="onClick"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -23,10 +23,12 @@ import android.widget.Toast;
 public class MainActivity extends FragmentActivity {
 
     Button btnregreso;
+    Button btnmasinfo;
+    String nombre="";
 
     private static final int my_permissions_request_receive_sms = 0;
     private static final String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
-    TextView messageTV, numberTV;
+    TextView messageTV, numberTV, coor;
     MyReceiver receiver = new MyReceiver(){
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -34,6 +36,10 @@ public class MainActivity extends FragmentActivity {
             messageTV.setText(msg);
             numberTV.setText(phoneNo);
             String[] data = msg.split(",");
+nombre = data[0];
+            //Log.v("number", data[0]);
+            //coor.setText(data[0]);
+
             Double latitud = Double.parseDouble(data[0]);
             Double longitud = Double.parseDouble(data[1].split("'")[0]);
             Log.i("Latitud", data[0]);
@@ -69,8 +75,20 @@ public class MainActivity extends FragmentActivity {
             }
         });
 
+        btnmasinfo= (Button)findViewById(R.id.masinfo);
+        btnmasinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(MainActivity.this, masinfor.class);
+                intent.putExtra("nombre",nombre);
+                startActivity(intent);
+            }
+        });
+
         messageTV = findViewById(R.id.message);
         numberTV = findViewById(R.id.number);
+        //coor = findViewById(R.id.number);
+
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED)
         {

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/images"
+    tools:context=".masinfor">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="411dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="Mas Información"
+        android:textColor="@android:color/background_light"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="192dp"
+            android:layout_height="207dp"
+            app:srcCompat="@drawable/operador" />
+
+        <LinearLayout
+            android:layout_width="213dp"
+            android:layout_height="207dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/coorde"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:hint="Coordenadas"
+                android:textColor="@android:color/background_light"
+                android:textColorHint="#B9B9B9"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:id="@+id/hora"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Última Hora"
+                android:textColor="@android:color/background_light"
+                android:textColorHint="#B9B9B9"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:id="@+id/fecha"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:hint="Fecha"
+                android:textColor="@android:color/background_light"
+                android:textColorHint="#B9B9B9"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:id="@+id/piso"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Piso estimado en el que se encuentra"
+                android:textColor="@android:color/background_light"
+                android:textColorHint="#B9B9B9"
+                android:textSize="15dp"></TextView>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

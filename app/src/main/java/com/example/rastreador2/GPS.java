@@ -21,12 +21,17 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class GPS extends AppCompatActivity {
 
-    Button btnrastrear;
+
+    Button btnrastrear, btnregistar;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gps);
+
+        conexionSQ conn= new conexionSQ(this, "bd_usuarios", null, 1);
 
         btnrastrear = (Button)findViewById(R.id.rastreo);
         btnrastrear.setOnClickListener(new View.OnClickListener() {
@@ -37,12 +42,22 @@ public class GPS extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnregistar = (Button)findViewById(R.id.ingresarherramienta);
+        btnregistar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent= new Intent(GPS.this, RegistrarUsuarios.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public static class FragmentMaps extends SupportMapFragment implements OnMapReadyCallback {
 
+        private GoogleMap mMap;
         double lat, lon;
-
         public FragmentMaps() { }
 
 
@@ -62,19 +77,25 @@ public class GPS extends AppCompatActivity {
 
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            LatLng latLng = new LatLng(lat, lon);
 
-            float zoom = 19;
+//            mMap = googleMap;
+//            mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+//            //googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+//
+//            LatLng latLng = new LatLng(lat, lon);
+//
+//            float zoom = 19;
+//
+//            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+//
+//            googleMap.getUiSettings().setZoomControlsEnabled(true);
+//
+//            googleMap.addMarker(new MarkerOptions().position(latLng));
+//
+//            UiSettings settings = googleMap.getUiSettings();
+//
+//            settings.setZoomControlsEnabled(true);
 
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
-
-            googleMap.getUiSettings().setZoomControlsEnabled(true);
-
-            googleMap.addMarker(new MarkerOptions().position(latLng));
-
-            UiSettings settings = googleMap.getUiSettings();
-
-            settings.setZoomControlsEnabled(true);
         }
     }
 }
