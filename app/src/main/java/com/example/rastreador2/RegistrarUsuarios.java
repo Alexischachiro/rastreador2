@@ -1,58 +1,48 @@
 package com.example.rastreador2;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.rastreador2.utilidades.utilidades;
+import com.example.rastreador2.repositories.herramientaRepo;
 
 public class RegistrarUsuarios extends AppCompatActivity {
 
-    EditText campoID,camponombre,camposerie;
+    EditText campoID, camponombre, camposerie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_usuarios);
 
-        campoID = (EditText) findViewById(R.id.campoID);
-        camponombre = (EditText) findViewById(R.id.camponombre);
-        camposerie = (EditText) findViewById(R.id.camposerie);
+        campoID = findViewById(R.id.campoID);
+        camponombre = findViewById(R.id.camponombre);
+        camposerie = findViewById(R.id.camposerie);
     }
     public void onClick(View view){
-        registrarherra();
-       // registrarUsuariosSql();
+        registrarHerramienta();
     }
 
-    private void registrarUsuariosSql() {
+    private void registrarHerramienta(){
+        Log.d("caca", "Llego a registrar herramienta");
+        String phone_number = campoID.getText().toString();
+        String name = camponombre.getText().toString();
+        String serie = camposerie.getText().toString();
+        if(!phone_number.equals("") && !name.equals("") && !serie.equals(""))
+        {
+            Long insertedId = new herramientaRepo(this).create(phone_number, name, serie);
+            Log.d("Inserted ID", insertedId.toString());
+            if(insertedId > 0) {
+                Toast.makeText(getApplicationContext(), "Herramienta registrada", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Algo falló al registrar", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Debes introducir todos los campos", Toast.LENGTH_LONG).show();
+        }
 
-        conexionSQ conn= new conexionSQ(this, "bd_usuarios", null, 1);
-        SQLiteDatabase db=conn.getWritableDatabase();
 
-
-        String insert="INSERT INTO" +utilidades.TABLA_USUARIOS
-                +"(" +utilidades.CAMPO_ID+","+utilidades.CAMPO_NOMBRE+","+utilidades.CAMPO_SERIE+"" +
-                ") VALUES ("+campoID.getText().toString()+", ' "+camponombre.getText().toString()+"','"
-        +camposerie.getText().toString()+"')";
-
-       db.execSQL(insert);
-
-        db.close();
-    }
-
-    private void registrarherra(){
-        conexionSQ conn= new conexionSQ(this, "bd_usuarios", null, 1);
-        SQLiteDatabase db=conn.getWritableDatabase();
-        ContentValues values=new ContentValues();
-        values.put(utilidades.CAMPO_ID, campoID.getText().toString());
-        values.put(utilidades.CAMPO_NOMBRE, camponombre.getText().toString());
-        values.put(utilidades.CAMPO_SERIE, camposerie.getText().toString());
-        Long idResultante=db.insert(utilidades.TABLA_USUARIOS, utilidades.CAMPO_ID,values);
-        Toast.makeText(getApplicationContext(), "Id Registro:"+idResultante,Toast.LENGTH_SHORT).show();
-        db.close();
     }
 }
