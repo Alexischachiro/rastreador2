@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/images"
+    tools:context=".consultarbase">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ID"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@color/transp"
+            android:hint="ID"
+            android:textColorHint="#B9B9B9"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"></EditText>
+
+        <Button
+            android:id="@+id/buscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transp"
+            android:gravity="center"
+            android:text="Buscar"
+            android:textColor="#FFFFFF"
+            android:onClick="onClick">
+
+        </Button>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transp"
+            android:hint="Nombre de la Herramienta"
+            android:textColorHint="#B9B9B9"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"></EditText>
+
+        <EditText
+            android:id="@+id/numeroserie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transp"
+            android:hint="Número de Seria"
+            android:textColorHint="#B9B9B9"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"></EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/actualizar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@color/transp"
+            android:gravity="center"
+            android:text="Actualizar"
+            android:textColor="#FFFFFF"
+            android:onClick="onClick">
+
+        </Button>
+
+        <Button
+            android:id="@+id/eliminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transp"
+            android:gravity="center"
+            android:text="Eliminar"
+            android:textColor="#FFFFFF"
+            android:onClick="onClick">
+
+        </Button>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="Base de Datos Herramientas "
+        android:textColor="@android:color/background_light"
+        android:textSize="20dp" >
+    </TextView>
+
+    <ListView
+        android:id="@+id/listViewPersonas"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:cacheColorHint="@color/colorAccent">
+
+    </ListView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -22,7 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class GPS extends AppCompatActivity {
 
 
-    Button btnrastrear, btnregistar;
+    Button btnrastrear, btnregistar, btnbase,btnusuario;
 
 
 
@@ -39,6 +39,26 @@ public class GPS extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent= new Intent(GPS.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnbase = (Button)findViewById(R.id.basededatos);
+        btnbase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent= new Intent(GPS.this, consultarbase.class);
+                startActivity(intent);
+            }
+        });
+
+        btnusuario = (Button)findViewById(R.id.ingresarusuario);
+        btnusuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent= new Intent(GPS.this, IngresarUsuario.class);
                 startActivity(intent);
             }
         });

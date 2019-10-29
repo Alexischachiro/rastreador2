@@ -14,6 +14,10 @@ public class usuarios {
         this.serie = serie;
     }
 
+    public usuarios(){
+
+    }
+
 
     public Integer getID() {
         return ID;

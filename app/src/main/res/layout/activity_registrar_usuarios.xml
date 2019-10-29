@@ -52,12 +52,13 @@
 
     <Button
         android:id="@+id/registrarherra"
-        android:layout_width="195dp"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/transp"
+        android:onClick="onClick"
         android:text="Registrar"
         android:textColor="#FFFFFF"
-        android:onClick="onClick"/>
+        android:visibility="visible" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

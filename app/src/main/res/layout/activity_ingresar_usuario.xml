@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/images"
+    tools:context=".IngresarUsuario">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/campodocumento"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@color/transp"
+            android:hint="Documento"
+            android:textColorHint="#B9B9B9"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"></EditText>
+
+        <Button
+            android:id="@+id/btnfoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transp"
+            android:gravity="center"
+            android:text="Foto"
+            android:textColor="#FFFFFF"
+            android:onClick="onClick">
+
+        </Button>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/campooperador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transp"
+            android:hint="Nombre del Operador"
+            android:textColorHint="#B9B9B9"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"></EditText>
+
+        <EditText
+            android:id="@+id/campocelular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transp"
+            android:hint="Número de Celular"
+            android:textColorHint="#B9B9B9"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"></EditText>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"></TextView>
+
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            ></ImageView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"></TextView>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/actualizar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transp"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="Actualizar"
+        android:textColor="#FFFFFF">
+
+    </Button>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

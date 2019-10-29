@@ -109,10 +109,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Ingresar Usuario"
-            android:textColor="#FFFFFF"
+            android:background="@color/transp"
             android:gravity="center"
-            android:background="@color/transp"/>
+            android:text="Ingresar Usuario"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
     <Button

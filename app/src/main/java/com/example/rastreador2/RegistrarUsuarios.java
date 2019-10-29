@@ -24,8 +24,8 @@ public class RegistrarUsuarios extends AppCompatActivity {
         camposerie = (EditText) findViewById(R.id.camposerie);
     }
     public void onClick(View view){
-        //registrarherra();
-        registrarUsuariosSql();
+        registrarherra();
+       // registrarUsuariosSql();
     }
 
     private void registrarUsuariosSql() {
@@ -53,7 +53,6 @@ public class RegistrarUsuarios extends AppCompatActivity {
         values.put(utilidades.CAMPO_SERIE, camposerie.getText().toString());
         Long idResultante=db.insert(utilidades.TABLA_USUARIOS, utilidades.CAMPO_ID,values);
         Toast.makeText(getApplicationContext(), "Id Registro:"+idResultante,Toast.LENGTH_SHORT).show();
-
-   db.close();
+        db.close();
     }
 }
