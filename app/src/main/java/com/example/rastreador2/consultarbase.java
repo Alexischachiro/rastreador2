@@ -15,24 +15,21 @@ import com.example.rastreador2.entidades.Herramienta;
 public class consultarbase extends AppCompatActivity {
 
     EditText campoid, camponombre, camposerie;
-    conexionSQ conn;
     ListView listViewPersonas;
-    ArrayList<String> listaInformación = new ArrayList<String>();
-
-    conexionSQ coon;
+    ArrayList<String> listaInformacion = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultarbase);
 
-        listViewPersonas = (ListView) findViewById(R.id.listViewPersonas);
+        listViewPersonas = findViewById(R.id.listViewPersonas);
         herramientaRepo repo = new herramientaRepo(this);
         ArrayList<Herramienta> herramientas = repo.getAll();
         Log.d("caca", herramientas.toString());
         this.obtenerLista(herramientas);
 
-        ArrayAdapter adatador = new ArrayAdapter(this,android.R.layout.simple_list_item_1, listaInformación);
+        ArrayAdapter adatador = new ArrayAdapter(this,android.R.layout.simple_list_item_1, listaInformacion);
         listViewPersonas.setAdapter(adatador);
         campoid = findViewById(R.id.ID);
         camponombre = findViewById(R.id.nombre);
@@ -45,14 +42,14 @@ public class consultarbase extends AppCompatActivity {
         if(!herramientas.isEmpty()) {
             Log.d("caca", "Entro a for");
             for (int i = 0; i < herramientas.size(); i++){
-                listaInformación.add(herramientas.get(i).getPhoneNumber()
+                listaInformacion.add(herramientas.get(i).getPhoneNumber()
                         +" - "
                         + herramientas.get(i).getNombre());
             }
         } else {
             Log.d("CACA", "vacio");
-            listaInformación = new ArrayList<String>();
-            listaInformación.add("No hay herramientas aún");
+            listaInformacion = new ArrayList<>();
+            listaInformacion.add("No hay herramientas aún");
         }
     }
 
