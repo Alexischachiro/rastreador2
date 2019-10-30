@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/images"
     tools:context=".masinfor">
 
@@ -15,75 +16,101 @@
         android:text="Mas Información"
         android:textColor="@android:color/background_light"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="1.0">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="192dp"
-            android:layout_height="207dp"
-            app:srcCompat="@drawable/operador" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="213dp"
-            android:layout_height="207dp"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Latitud"
+                android:textColor="@android:color/background_light"
+                android:textSize="20dp"></TextView>
 
             <TextView
                 android:id="@+id/coorde"
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:hint="Coordenadas"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
                 android:textColor="@android:color/background_light"
-                android:textColorHint="#B9B9B9"
-                android:textSize="15dp"></TextView>
+                android:textSize="20dp"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Longitud"
+                android:textColor="@android:color/background_light"
+                android:textSize="20dp"></TextView>
+
+            <TextView
+                android:id="@+id/longitud"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/background_light"
+                android:textSize="20dp"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Ultima hora de rastreo"
+                android:textColor="@android:color/background_light"
+                android:textSize="20dp"></TextView>
 
             <TextView
                 android:id="@+id/hora"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="Última Hora"
+                android:layout_height="45dp"
                 android:textColor="@android:color/background_light"
-                android:textColorHint="#B9B9B9"
-                android:textSize="15dp"></TextView>
+                android:textSize="20dp"></TextView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Ultima fecha de rastreo"
+                android:textColor="@android:color/background_light"
+                android:textSize="20dp"></TextView>
 
             <TextView
                 android:id="@+id/fecha"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:hint="Fecha"
+                android:layout_height="45dp"
                 android:textColor="@android:color/background_light"
-                android:textColorHint="#B9B9B9"
-                android:textSize="15dp"></TextView>
-
-            <TextView
-                android:id="@+id/piso"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="Piso estimado en el que se encuentra"
-                android:textColor="@android:color/background_light"
-                android:textColorHint="#B9B9B9"
-                android:textSize="15dp"></TextView>
-
-
+                android:textSize="20dp"></TextView>
         </LinearLayout>
 
 
     </LinearLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        app:srcCompat="@drawable/operador"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"/>
 
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

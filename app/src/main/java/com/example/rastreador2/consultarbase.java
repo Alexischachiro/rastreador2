@@ -71,7 +71,7 @@ public class consultarbase extends AppCompatActivity {
         listaInformación=new ArrayList<String>();
 
         for (int i=0; i<listaUsuarios.size(); i++){
-            listaInformación.add(listaUsuarios.get(i).getID()+" - "+listaUsuarios.get(i).getNombre());
+            listaInformación.add(listaUsuarios.get(i).getNombre()+" --- "+listaUsuarios.get(i).getID()+" --- "+listaUsuarios.get(i).getSerie());
         }
     }
 

@@ -27,13 +27,4 @@ public class IngresarUsuario extends AppCompatActivity {
 
     public void onClick(View view) {
     }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-
-
-
-        return null;
-    }
 }

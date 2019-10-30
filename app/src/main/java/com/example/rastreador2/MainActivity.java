@@ -24,7 +24,10 @@ public class MainActivity extends FragmentActivity {
 
     Button btnregreso;
     Button btnmasinfo;
-    String nombre="";
+    String latitud="";
+    String longitud="";
+    String hora="";
+    String fecha="";
 
     private static final int my_permissions_request_receive_sms = 0;
     private static final String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
@@ -36,7 +39,10 @@ public class MainActivity extends FragmentActivity {
             messageTV.setText(msg);
             numberTV.setText(phoneNo);
             String[] data = msg.split(",");
-nombre = data[0];
+            latitud = data[0];
+            longitud = data[1];
+            hora= data[3];
+            fecha = data[4];
             //Log.v("number", data[0]);
             //coor.setText(data[0]);
 
@@ -80,7 +86,10 @@ nombre = data[0];
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(MainActivity.this, masinfor.class);
-                intent.putExtra("nombre",nombre);
+                intent.putExtra("latitud",latitud);
+                intent.putExtra("longitud",longitud);
+                intent.putExtra("hora",hora);
+                intent.putExtra("fecha",fecha);
                 startActivity(intent);
             }
         });
