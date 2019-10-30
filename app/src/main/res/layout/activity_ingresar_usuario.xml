@@ -8,62 +8,67 @@
     android:background="@drawable/images"
     tools:context=".IngresarUsuario">
 
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="411dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="Ingresar nuevo Operador"
+        android:textColor="@android:color/background_light"
+        android:textSize="20dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/campodocumento"
-            android:layout_width="300dp"
+        <LinearLayout
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:background="@color/transp"
-            android:hint="Documento"
-            android:textColorHint="#B9B9B9"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"></EditText>
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/campooperador"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@color/transp"
+                android:hint="Nombre del Operador"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#B9B9B9"
+                android:textSize="20dp"></EditText>
+
+            <EditText
+                android:id="@+id/campocelular"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@color/transp"
+                android:hint="Número de Celular"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#B9B9B9"
+                android:textSize="20dp"></EditText>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnfoto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/transp"
             android:gravity="center"
-            android:text="Foto"
-            android:textColor="#FFFFFF"
-            android:onClick="onClick">
+            android:onClick="onClick"
+            android:text="Tomar Foto"
+            android:textColor="#FFFFFF">
 
         </Button>
-
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/campooperador"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transp"
-            android:hint="Nombre del Operador"
-            android:textColorHint="#B9B9B9"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"></EditText>
-
-        <EditText
-            android:id="@+id/campocelular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transp"
-            android:hint="Número de Celular"
-            android:textColorHint="#B9B9B9"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"></EditText>
-
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="100dp"></TextView>
+            android:layout_height="50dp"></TextView>
 
 
         <ImageView
@@ -71,9 +76,10 @@
             android:layout_height="300dp"
             android:layout_gravity="center"
             ></ImageView>
+
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="100dp"></TextView>
+            android:layout_height="50dp"></TextView>
 
 
     </LinearLayout>
@@ -85,7 +91,7 @@
         android:background="@color/transp"
         android:gravity="center"
         android:onClick="onClick"
-        android:text="Actualizar"
+        android:text="Ingresar Operador"
         android:textColor="#FFFFFF">
 
     </Button>

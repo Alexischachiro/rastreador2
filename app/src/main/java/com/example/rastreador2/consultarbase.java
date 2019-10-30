@@ -37,7 +37,6 @@ public class consultarbase extends AppCompatActivity {
 
     }
 
-
     private void obtenerLista(ArrayList<Herramienta> herramientas) {
         if(!herramientas.isEmpty()) {
             Log.d("caca", "Entro a for");
@@ -51,6 +50,7 @@ public class consultarbase extends AppCompatActivity {
             listaInformacion = new ArrayList<>();
             listaInformacion.add("No hay herramientas aún");
         }
+
     }
 
 

@@ -20,8 +20,8 @@ import android.widget.Toast;
 
 public class masinfor extends AppCompatActivity {
 
-    String name;
-    TextView coor;
+    String latituD, longituD, horA, fechA;
+    TextView latitud, longitud, hora, fecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +29,21 @@ public class masinfor extends AppCompatActivity {
         setContentView(R.layout.activity_masinfor);
 
         Intent intent = getIntent();
-        name = intent.getStringExtra("nombre");
+        latituD = intent.getStringExtra("latitud");
+        latitud = findViewById(R.id.coorde);
+        latitud.setText(latituD);
 
-        coor = findViewById(R.id.coorde);
-        coor.setText(name);
+        longituD = intent.getStringExtra("longitud");
+        longitud = findViewById(R.id.longitud);
+        longitud.setText(longituD);
+
+        horA = intent.getStringExtra("hora");
+        hora = findViewById(R.id.hora);
+        hora.setText(horA);
+
+        fechA = intent.getStringExtra("fecha");
+        fecha = findViewById(R.id.fecha);
+        fecha.setText(fechA);
 
     }
 
