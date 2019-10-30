@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/images"
+    tools:context=".seleccionarherramienta">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="411dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="Seleccionar las Herrameintas a ocupar"
+        android:textColor="@android:color/background_light"
+        android:textSize="20dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"></LinearLayout>
+    <Button
+        android:id="@+id/finalizar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transp"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="Finalizar"
+        android:textColor="#FFFFFF" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
