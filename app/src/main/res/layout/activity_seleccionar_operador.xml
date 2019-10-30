@@ -20,14 +20,20 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="400dp"></LinearLayout>
+        android:layout_height="400dp">
+
+        <ListView
+            android:id="@+id/listViewUsers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+    </LinearLayout>
     <Button
         android:id="@+id/seleccionarherra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transp"
         android:gravity="center"
-        android:onClick="onClick"
         android:text="Seleccinar las Herramientas a ocupar"
         android:textColor="#FFFFFF" />
 
