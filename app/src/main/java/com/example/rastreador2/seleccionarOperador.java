@@ -21,7 +21,7 @@ public class seleccionarOperador extends AppCompatActivity {
     Button btnselecherra;
     ListView listViewUsuarios;
     ArrayList<String> listaUsuarios = new ArrayList<>();
-    ArrayList<Usuario> usuarios = null;
+    ArrayList<Usuario> usuarios;
     Usuario userSelected;
     TextView txtUserSelected;
     @Override
@@ -33,9 +33,14 @@ public class seleccionarOperador extends AppCompatActivity {
         btnselecherra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent= new Intent(seleccionarOperador.this, seleccionarherramienta.class);
-                startActivity(intent);
+                if(!txtUserSelected.getText().equals("")) {
+                    Intent intent= new Intent(seleccionarOperador.this, seleccionarherramienta.class);
+                    intent.putExtra("user_name", userSelected.getNombre());
+                    intent.putExtra("user_phone_number", userSelected.getPhone_number());
+                    intent.putExtra("user_active", userSelected.getActivo());
+                    intent.putExtra("user_id", userSelected.getId());
+                    startActivity(intent);
+                }
             }
         });
         listViewUsuarios = findViewById(R.id.listViewUsers);

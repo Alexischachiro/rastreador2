@@ -18,9 +18,23 @@
         android:textColor="@android:color/background_light"
         android:textSize="20dp" />
 
+    <TextView
+        android:id="@+id/txtUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="400dp"></LinearLayout>
+        android:layout_height="400dp">
+
+        <ListView
+            android:id="@+id/listViewHerramientas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
     <Button
         android:id="@+id/finalizar"
         android:layout_width="match_parent"
