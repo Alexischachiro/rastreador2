@@ -13,19 +13,28 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.example.rastreador2.repositories.usuarioRepo;
+import com.example.rastreador2.entidades.Usuario;
+import com.example.rastreador2.consts.usuarioConsts;
 
 public class IngresarUsuario extends AppCompatActivity {
 
-    Button btnFOTO;
+    Button btnFOTO, btnSave;
     ImageView imgFoto;
+    EditText nombre, telefono;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingresar_usuario);
 
-        imgFoto = (ImageView)findViewById(R.id.imagen);
-        btnFOTO = (Button)findViewById(R.id.btnfoto);
+        imgFoto = findViewById(R.id.imagen);
+        btnFOTO = findViewById(R.id.btnfoto);
+        nombre = findViewById(R.id.campooperador);
+        telefono = findViewById(R.id.campocelular);
+        btnSave = findViewById(R.id.BtnActualizar);
         btnFOTO.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,6 +42,19 @@ public class IngresarUsuario extends AppCompatActivity {
                         "content://media/internal/images/media"
                 ));
                 startActivityForResult(intent, 1);
+            }
+        });
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = nombre.getText().toString();
+                String phoneNumber = telefono.getText().toString();
+                if(!name.equals("") && !phoneNumber.equals("")) {
+                    Long insertedId = new usuarioRepo(getApplicationContext()).create(phoneNumber, name);
+                    Toast.makeText(getApplicationContext(), "Usuario creado con id " + insertedId.toString(), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Verifica tus datos", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

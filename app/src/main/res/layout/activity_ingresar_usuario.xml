@@ -85,12 +85,11 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/actualizar"
+        android:id="@+id/BtnActualizar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transp"
         android:gravity="center"
-        android:onClick="onClick"
         android:text="Ingresar Operador"
         android:textColor="#FFFFFF">
 

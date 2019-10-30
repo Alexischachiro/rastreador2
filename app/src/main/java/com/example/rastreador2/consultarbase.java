@@ -59,7 +59,7 @@ public class consultarbase extends AppCompatActivity {
                 String phone_number = campoid.getText().toString();
                 buscar(phone_number);
                 break;
-            case R.id.actualizar:
+            case R.id.BtnActualizar:
                 actualizarusuario();
                 break;
             case R.id.eliminar:
