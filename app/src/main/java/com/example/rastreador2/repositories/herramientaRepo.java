@@ -15,7 +15,7 @@ public class herramientaRepo {
     conexionSQ conn;
 
     public herramientaRepo(Context context) {
-        conn = new conexionSQ(context, "rastreadordb", null, 4);
+        conn = new conexionSQ(context, "rastreadordb", null, 5);
     };
 
 
@@ -27,8 +27,10 @@ public class herramientaRepo {
             Herramienta herramienta = new Herramienta();
             herramienta.setId(cursor.getInt(0));
             herramienta.setPhone_number(cursor.getString(1));
-            herramienta.setNombre(cursor.getString(2));;
+            herramienta.setNombre(cursor.getString(2));
             herramienta.setSerie(cursor.getString(3));
+            herramienta.setActive(cursor.getInt(4));
+            herramienta.setUserId(cursor.getInt(5));
             herramientas.add(herramienta);
         }
         conn.close();
@@ -41,7 +43,9 @@ public class herramientaRepo {
         String [] fields = {
                 herramientaConsts.ID_COLUMN_NAME,
                 herramientaConsts.NAME_COLUMN_NAME,
-                herramientaConsts.SERIE_COLUMN_NAME
+                herramientaConsts.SERIE_COLUMN_NAME,
+                herramientaConsts.ACTIVE_COLUMN_NAME,
+                herramientaConsts.USERID_COLUMN_NAME
         };
         String [] parameters = { phone_number };
         try {
@@ -59,6 +63,8 @@ public class herramientaRepo {
             herramienta.setPhone_number(phone_number);
             herramienta.setNombre(cursor.getString(1));
             herramienta.setSerie(cursor.getString(2));
+            herramienta.setActive(cursor.getInt(3));
+            herramienta.setUserId(cursor.getInt(4));
             cursor.close();
             conn.close();
             return herramienta;

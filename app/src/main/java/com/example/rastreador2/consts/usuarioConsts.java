@@ -10,10 +10,10 @@ public class usuarioConsts {
 
     public static final String CREATE_TABLE = String.format(
             "CREATE TABLE %s(" +
-                    "%s INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "%s CHAR(15) NOT NULL ," +
-                    "%s TEXT NOT NULL," +
-                    "%s BOOLEAN NOT NULL," +
+                    "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "%s CHAR(15) NOT NULL, " +
+                    "%s TEXT NOT NULL, " +
+                    "%s INTEGER DEFAULT 0" +
                     ")",
             TABLE_NAME,
             ID_COLUMN_NAME,

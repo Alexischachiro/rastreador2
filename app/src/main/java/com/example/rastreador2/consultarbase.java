@@ -39,15 +39,12 @@ public class consultarbase extends AppCompatActivity {
 
     private void obtenerLista(ArrayList<Herramienta> herramientas) {
         if(!herramientas.isEmpty()) {
-            Log.d("caca", "Entro a for");
             for (int i = 0; i < herramientas.size(); i++){
                 listaInformacion.add(herramientas.get(i).getPhoneNumber()
                         +" - "
                         + herramientas.get(i).getNombre());
             }
         } else {
-            Log.d("CACA", "vacio");
-            listaInformacion = new ArrayList<>();
             listaInformacion.add("No hay herramientas aún");
         }
 

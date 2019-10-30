@@ -4,9 +4,9 @@ public class Usuario {
     private Integer id;
     private String nombre;
     private String phone_number;
-    private Boolean activo;
+    private Integer activo;
 
-    public Usuario(Integer id, String nombre, String phone_number, Boolean activo) {
+    public Usuario(Integer id, String nombre, String phone_number, Integer activo) {
         this.id = id;
         this.phone_number = phone_number;
         this.nombre = nombre;
@@ -41,11 +41,11 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public Boolean getActivo() {
+    public Integer getActivo() {
         return activo;
     }
 
-    public void setActivo(Boolean activo) {
+    public void setActivo(Integer activo) {
         this.activo = activo;
     }
 }
