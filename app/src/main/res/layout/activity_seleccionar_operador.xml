@@ -14,6 +14,7 @@
         android:layout_width="411dp"
         android:layout_height="60dp"
         android:gravity="center"
+        android:textStyle="bold"
         android:text="Seleccionar al Operador"
         android:textColor="@android:color/background_light"
         android:textSize="20dp" />
@@ -28,22 +29,40 @@
             android:layout_height="match_parent">
         </ListView>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="normal|italic"
+            android:text="Operador seleccionado"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"></TextView>
+
+        <TextView
+            android:id="@+id/txtUserSelected"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textStyle="normal|italic"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+    </LinearLayout>
     <Button
         android:id="@+id/seleccionarherra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transp"
         android:gravity="center"
+        android:textStyle="bold"
         android:text="Seleccinar las Herramientas a ocupar"
         android:textColor="#FFFFFF" />
 
-    <TextView
-        android:id="@+id/txtUserSelected"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

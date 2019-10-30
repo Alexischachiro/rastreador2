@@ -51,7 +51,7 @@ public class seleccionarOperador extends AppCompatActivity {
 
         ArrayAdapter adapter = new ArrayAdapter(
                 this,
-                android.R.layout.simple_list_item_1,
+                R.layout.layoutlist,
                 listaUsuarios
         );
         listViewUsuarios.setAdapter(adapter);

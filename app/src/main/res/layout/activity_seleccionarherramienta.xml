@@ -10,21 +10,24 @@
 
 
     <TextView
+        android:id="@+id/txtUser"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textStyle="normal|italic"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp" />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="411dp"
         android:layout_height="60dp"
         android:gravity="center"
+        android:textStyle="bold"
         android:text="Seleccionar las Herrameintas a ocupar"
         android:textColor="@android:color/background_light"
         android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/txtUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -43,6 +46,7 @@
         android:gravity="center"
         android:onClick="onClick"
         android:text="Finalizar"
+        android:textStyle="bold"
         android:textColor="#FFFFFF" />
 
 

@@ -57,6 +57,7 @@
             android:gravity="center"
             android:onClick="onClick"
             android:text="Seleccionar Foto"
+            android:textStyle="bold"
             android:textColor="#FFFFFF">
 
         </Button>
@@ -91,6 +92,7 @@
         android:background="@color/transp"
         android:gravity="center"
         android:text="Ingresar Operador"
+        android:textStyle="bold"
         android:textColor="#FFFFFF">
 
     </Button>

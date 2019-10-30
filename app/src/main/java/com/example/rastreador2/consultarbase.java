@@ -17,20 +17,23 @@ public class consultarbase extends AppCompatActivity {
     EditText campoid, camponombre, camposerie;
     ListView listViewPersonas;
     ArrayList<String> listaInformacion = new ArrayList<>();
-
+    ArrayAdapter adatador;
+    herramientaRepo repo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultarbase);
 
         listViewPersonas = findViewById(R.id.listViewPersonas);
-        herramientaRepo repo = new herramientaRepo(this);
+        repo = new herramientaRepo(this);
         ArrayList<Herramienta> herramientas = repo.getAll();
         Log.d("caca", herramientas.toString());
         this.obtenerLista(herramientas);
 
-        ArrayAdapter adatador = new ArrayAdapter(this,android.R.layout.simple_list_item_1, listaInformacion);
+         adatador = new ArrayAdapter(this,R.layout.layoutlist, listaInformacion);
+        adatador.notifyDataSetChanged();
         listViewPersonas.setAdapter(adatador);
+
         campoid = findViewById(R.id.ID);
         camponombre = findViewById(R.id.nombre);
         camposerie = findViewById(R.id.numeroserie);
@@ -38,6 +41,7 @@ public class consultarbase extends AppCompatActivity {
     }
 
     private void obtenerLista(ArrayList<Herramienta> herramientas) {
+        listaInformacion.clear();
         if(!herramientas.isEmpty()) {
             for (int i = 0; i < herramientas.size(); i++){
                 listaInformacion.add(herramientas.get(i).getPhoneNumber()
@@ -79,6 +83,9 @@ public class consultarbase extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(),"Error al eliminar", Toast.LENGTH_SHORT).show();
         }
+        ArrayList<Herramienta> herramientas = repo.getAll();
+        this.obtenerLista(herramientas);
+        adatador.notifyDataSetChanged();
 
 
     }
@@ -96,6 +103,9 @@ public class consultarbase extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Error al actualizar", Toast.LENGTH_SHORT).show();
         }
         limpiar();
+        ArrayList<Herramienta> herramientas = repo.getAll();
+        this.obtenerLista(herramientas);
+        adatador.notifyDataSetChanged();
     }
 
     private void buscar(String phone_number) {
@@ -106,6 +116,7 @@ public class consultarbase extends AppCompatActivity {
         } catch (Exception e){
             Toast.makeText(getApplicationContext(),"La herramienta no existe", Toast.LENGTH_SHORT).show();
             limpiar();
+
         }
 
     }

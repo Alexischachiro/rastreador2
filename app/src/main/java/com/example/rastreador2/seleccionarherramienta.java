@@ -42,7 +42,7 @@ public class seleccionarherramienta extends AppCompatActivity {
         this.getHerramientaList(herramientas);
         ArrayAdapter adapter = new ArrayAdapter(
                 this,
-                android.R.layout.simple_list_item_1,
+                R.layout.layoutlist,
                 listHerramientas
         );
         listViewHerramientas.setAdapter(adapter);
