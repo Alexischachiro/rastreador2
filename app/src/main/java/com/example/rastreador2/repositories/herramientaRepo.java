@@ -37,6 +37,48 @@ public class herramientaRepo {
         return herramientas;
     }
 
+    public ArrayList<Herramienta> getActive() {
+        SQLiteDatabase db = conn.getReadableDatabase();
+        ArrayList<Herramienta> herramientas = new ArrayList<>();
+        String[] fields = {
+                herramientaConsts.ID_COLUMN_NAME,
+                herramientaConsts.NAME_COLUMN_NAME,
+                herramientaConsts.PHONE_COLUMN_NAME,
+                herramientaConsts.SERIE_COLUMN_NAME,
+                herramientaConsts.ACTIVE_COLUMN_NAME,
+                herramientaConsts.USERID_COLUMN_NAME
+        };
+        try {
+            Cursor cursor = db.query(
+                    herramientaConsts.TABLE_NAME,
+                    fields,
+                    herramientaConsts.ACTIVE_COLUMN_NAME + " = 1",
+                    null,
+                    null,
+                    null,
+                    null
+            );
+            while(cursor.moveToNext()) {
+                Herramienta herramienta = new Herramienta();
+                herramienta.setId(cursor.getInt(0));
+                herramienta.setNombre(cursor.getString(1));
+                herramienta.setPhone_number(cursor.getString(2));
+                herramienta.setSerie(cursor.getString(3));
+                herramienta.setActive(cursor.getInt(4));
+                if(!cursor.isNull(5)) {
+                    herramienta.setUserId(cursor.getInt(5));
+                }
+                herramientas.add(herramienta);
+            }
+            cursor.close();
+            conn.close();
+            return herramientas;
+        } catch (Exception e) {
+            conn.close();
+            return herramientas;
+        }
+    }
+
     public Herramienta getOne(String phone_number) {
         SQLiteDatabase db = conn.getReadableDatabase();
         Herramienta herramienta = new Herramienta();
