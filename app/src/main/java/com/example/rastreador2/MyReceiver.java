@@ -22,10 +22,10 @@ public class MyReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent)
     {
         Log.i(TAG, "Intent Received: " + intent.getAction());
-        if (intent.getAction()==SMS_RECEIVED)
+        if (intent.getAction() == SMS_RECEIVED)
         {
             Bundle dataBundle = intent.getExtras();
-            if (dataBundle!=null)
+            if (dataBundle != null)
             {
                 Object[] mypdu = (Object[]) dataBundle.get("pdus");
                 final SmsMessage[] message = new SmsMessage[mypdu.length];
@@ -43,13 +43,9 @@ public class MyReceiver extends BroadcastReceiver {
                         message[i]= SmsMessage.createFromPdu((byte[]) mypdu[i]);
                     }
                     msg = message[i].getMessageBody();
-                    Log.d("Coordenadas", msg);
-                    String[] data = msg.split(",");
-                    Log.i("Latitud", data[0]);
-                    Log.i("Longitud", data[1].split("'")[0]);
                     phoneNo = message[i].getOriginatingAddress();
                 }
-                Toast.makeText(context, "Coordenadas: "+msg + "\nId de Herramienta: "+phoneNo, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Mensaje recibido: " + msg + "\nId de Herramienta: " + phoneNo, Toast.LENGTH_LONG).show();
             }
         }
 

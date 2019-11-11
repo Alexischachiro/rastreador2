@@ -36,7 +36,7 @@ public class usuarioRepo {
         return usuarios;
     }
 
-    public Usuario getOne(String id) {
+    public Usuario getOne(int id) {
         SQLiteDatabase db = conn.getReadableDatabase();
         Usuario usuario = new Usuario();
         String [] fields = {
@@ -45,7 +45,7 @@ public class usuarioRepo {
                 usuarioConsts.NAME_COLUMN_NAME,
                 usuarioConsts.ACTIVE_COLUMN_NAME,
         };
-        String [] parameters = { id };
+        String [] parameters = { String.valueOf(id) };
         try {
             Cursor cursor = db.query(
                     usuarioConsts.TABLE_NAME,
