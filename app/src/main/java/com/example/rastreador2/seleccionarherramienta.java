@@ -42,7 +42,7 @@ public class seleccionarherramienta extends AppCompatActivity {
         //getting Herramientas from DB
         listViewHerramientas = findViewById(R.id.listViewHerramientas);
         herramientaRepo repo = new herramientaRepo(this);
-        herramientas = repo.getAll();
+        herramientas = repo.getNonActive();
         this.getHerramientaList(herramientas);
         ArrayAdapter adapter = new ArrayAdapter(
                 this,
