@@ -24,33 +24,42 @@ public class MainActivity extends FragmentActivity {
 
     Button btnregreso;
     Button btnmasinfo;
-    String latitud="";
-    String longitud="";
-    String hora="";
-    String fecha="";
+    String latitud = "";
+    String longitud = "";
+    String hora = "";
+    String fecha = "";
+    String tool_phone_id;
+    String tool_name = "";
+    Integer tool_user_id;
 
     private static final int my_permissions_request_receive_sms = 0;
     private static final String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
-    TextView messageTV, numberTV, coor;
+    TextView messageTV, numberTV, coor, numberID;
     MyReceiver receiver = new MyReceiver(){
         @Override
         public void onReceive(Context context, Intent intent) {
             super.onReceive(context, intent);
             messageTV.setText(msg);
-            numberTV.setText(phoneNo);
+            // numberTV.setText(phoneNo);
             String[] data = msg.split(",");
             latitud = data[0];
             longitud = data[1];
             hora= data[3];
             fecha = data[4];
-            //Log.v("number", data[0]);
-            //coor.setText(data[0]);
+
 
             Double latitud = Double.parseDouble(data[0]);
             Double longitud = Double.parseDouble(data[1].split("'")[0]);
             Log.i("Latitud", data[0]);
             Log.i("Longitud", data[1].split("'")[0]);
-            mapa(latitud, longitud);
+            Log.i("El registrado", tool_phone_id);
+            Log.i("EDel que llega", phoneNo);
+            if(phoneNo.equals(tool_phone_id)) {
+                Log.d("MAPITA COLORES", "Es del mismo número perrillo");
+                mapa(latitud, longitud);
+            } else {
+                Log.d("MAPITA COLORES", "No es del mismo número");
+            }
         }
     };
 
@@ -70,6 +79,12 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        tool_phone_id = intent.getStringExtra("tool_phone_id");
+        tool_name = intent.getStringExtra("tool_name");
+        tool_user_id = intent.getIntExtra("tool_user_id", 0);
+
 
         btnregreso = (Button)findViewById(R.id.regreso);
         btnregreso.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +111,7 @@ public class MainActivity extends FragmentActivity {
 
         messageTV = findViewById(R.id.message);
         numberTV = findViewById(R.id.number);
+        numberTV.setText(tool_phone_id);
         //coor = findViewById(R.id.number);
 
 

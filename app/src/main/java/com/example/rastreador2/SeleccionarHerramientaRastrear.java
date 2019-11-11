@@ -2,6 +2,7 @@ package com.example.rastreador2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +38,11 @@ public class SeleccionarHerramientaRastrear extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Log.d("ONCLICK","item" + listViewHerramientasRastrear.getItemAtPosition(position));
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("tool_phone_id", herramientas.get(position).getPhoneNumber());
+                intent.putExtra("tool_name", herramientas.get(position).getNombre());
+                intent.putExtra("tool_user_id", herramientas.get(position).getUserId());
+                startActivity(intent);
             }
         });
     }
