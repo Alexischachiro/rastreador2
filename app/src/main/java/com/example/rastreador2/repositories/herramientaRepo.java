@@ -160,4 +160,20 @@ public class herramientaRepo {
         db.close();
         return deleted;
     }
+
+    public int assignToUser(Integer id, Integer userId) {
+        SQLiteDatabase db = conn.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(herramientaConsts.ACTIVE_COLUMN_NAME, 1);
+        values.put(herramientaConsts.USERID_COLUMN_NAME, userId);
+        String [] parameters = { id.toString() };
+        int updated = db.update(
+                herramientaConsts.TABLE_NAME,
+                values,
+                herramientaConsts.ID_COLUMN_NAME + " = ?",
+                parameters
+        );
+        db.close();
+        return updated;
+    }
 }

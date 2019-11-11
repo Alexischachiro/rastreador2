@@ -6,23 +6,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.rastreador2.repositories.herramientaRepo;
 import com.example.rastreador2.entidades.Herramienta;
 
 import java.util.ArrayList;
 
 public class seleccionarherramienta extends AppCompatActivity {
-    Button btninicio;
+    Button btnFinalizar;
     TextView txtUserSelected;
     ListView listViewHerramientas;
     String userName, userPhoneNumber;
     Integer userActive, userId;
     ArrayList<Herramienta> herramientas;
     ArrayList<String> listHerramientas = new ArrayList<>();
+    ArrayList<Integer> selectedHerramientasIndexes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +46,17 @@ public class seleccionarherramienta extends AppCompatActivity {
         this.getHerramientaList(herramientas);
         ArrayAdapter adapter = new ArrayAdapter(
                 this,
-                R.layout.layoutlist,
+                R.layout.layoutlistmultiple,
                 listHerramientas
         );
         listViewHerramientas.setAdapter(adapter);
+        listViewHerramientas.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        listViewHerramientas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                handleSelectHerramienta(position);
+            }
+        });
         txtUserSelected = findViewById(R.id.txtUser);
         txtUserSelected.setText(String.format(
                 "Operador seleccionado: %s",
@@ -54,13 +65,23 @@ public class seleccionarherramienta extends AppCompatActivity {
 
 
 
-        btninicio = findViewById(R.id.finalizar);
-        btninicio.setOnClickListener(new View.OnClickListener() {
+        btnFinalizar = findViewById(R.id.finalizar);
+        btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent= new Intent(seleccionarherramienta.this, GPS.class);
-                startActivity(intent);
+                if(!selectedHerramientasIndexes.isEmpty()) {
+                    for(int i = 0; i < selectedHerramientasIndexes.size(); i++) {
+                        int herramientaIndex = selectedHerramientasIndexes.get(i);
+                        int herramientaId = herramientas.get(herramientaIndex).getId();
+                        herramientaRepo repo = new herramientaRepo(getApplicationContext());
+                        int updated = repo.assignToUser(herramientaId, userId);
+                        if(updated > 0) {
+                            Toast.makeText(getApplicationContext(), "Herramienta actualizada", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "No se han seleccionado herramientas", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -80,6 +101,16 @@ public class seleccionarherramienta extends AppCompatActivity {
         }
     }
 
-    public void onClick(View view) {
+    private void handleSelectHerramienta(Integer position) {
+        if(selectedHerramientasIndexes.contains(position)) {
+            selectedHerramientasIndexes.remove(
+                    selectedHerramientasIndexes.indexOf(position)
+            );
+        } else {
+            selectedHerramientasIndexes.add(position);
+        }
+        Log.d("INDEXES SELECTED", selectedHerramientasIndexes.toString());
     }
+
+
 }
