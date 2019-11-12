@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".seleccionarherramienta"></activity>
+        <activity android:name=".desactivarherra"></activity>
+        <activity android:name=".detallesOperadorHerrameintas" />
+        <activity android:name=".seleccionarherramienta" />
         <activity android:name=".seleccionarOperador" />
         <activity android:name=".IngresarUsuario" />
         <activity android:name=".consultarbase" />
