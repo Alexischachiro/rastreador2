@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.rastreador2.conexionSQ;
 import com.example.rastreador2.entidades.Usuario;
@@ -16,7 +17,7 @@ public class usuarioRepo {
     conexionSQ conn;
 
     public usuarioRepo(Context context) {
-        conn = new conexionSQ(context, "rastreadordb", null, 8);
+        conn = new conexionSQ(context, "rastreadordb", null, 9);
     };
 
 
@@ -79,6 +80,86 @@ public class usuarioRepo {
 
     }
 
+    public ArrayList<Usuario> getActive() {
+        SQLiteDatabase db = conn.getReadableDatabase();
+        Usuario usuario = new Usuario();
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        String [] fields = {
+                usuarioConsts.ID_COLUMN_NAME,
+                usuarioConsts.PHONE_COLUMN_NAME,
+                usuarioConsts.NAME_COLUMN_NAME,
+                usuarioConsts.ACTIVE_COLUMN_NAME,
+                usuarioConsts.IMAGE_COLUMN_NAME
+        };
+        try {
+            Cursor cursor = db.query(
+                    usuarioConsts.TABLE_NAME,
+                    fields,
+                    usuarioConsts.ACTIVE_COLUMN_NAME+ " = 1",
+                    null,
+                    null,
+                    null,
+                    null
+            );
+            while(cursor.moveToNext()) {
+                usuario.setId(cursor.getInt(0));
+                usuario.setPhone_number(cursor.getString(1));
+                usuario.setNombre(cursor.getString(2));
+                usuario.setActivo(cursor.getInt(3));
+                if(!cursor.isNull(4)) {
+                    usuario.setImage_path(cursor.getString(4));
+                }
+                usuarios.add(usuario);
+            }
+            cursor.close();
+            conn.close();
+            return usuarios;
+        } catch(Exception e) {
+            conn.close();
+            return usuarios;
+        }
+    }
+
+    public ArrayList<Usuario> getNonActive() {
+        SQLiteDatabase db = conn.getReadableDatabase();
+        Usuario usuario = new Usuario();
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        String [] fields = {
+                usuarioConsts.ID_COLUMN_NAME,
+                usuarioConsts.PHONE_COLUMN_NAME,
+                usuarioConsts.NAME_COLUMN_NAME,
+                usuarioConsts.ACTIVE_COLUMN_NAME,
+                usuarioConsts.IMAGE_COLUMN_NAME
+        };
+        try {
+            Cursor cursor = db.query(
+                    usuarioConsts.TABLE_NAME,
+                    fields,
+                    usuarioConsts.ACTIVE_COLUMN_NAME+ " = 0",
+                    null,
+                    null,
+                    null,
+                    null
+            );
+            while(cursor.moveToNext()) {
+                usuario.setId(cursor.getInt(0));
+                usuario.setPhone_number(cursor.getString(1));
+                usuario.setNombre(cursor.getString(2));
+                usuario.setActivo(cursor.getInt(3));
+                if(!cursor.isNull(4)) {
+                    usuario.setImage_path(cursor.getString(4));
+                }
+                usuarios.add(usuario);
+            }
+            cursor.close();
+            conn.close();
+            return usuarios;
+        } catch(Exception e) {
+            conn.close();
+            return usuarios;
+        }
+    }
+
     public long create(String phone_number, String name, String image_path) {
         SQLiteDatabase db = conn.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -92,6 +173,28 @@ public class usuarioRepo {
         );
         db.close();
         return inserted_id;
+    }
+
+    public int updateActive(Integer userId) {
+        Log.d("El userID", String.valueOf(userId));
+        SQLiteDatabase db = conn.getWritableDatabase();
+        String [] parameters = { String.valueOf(userId) };
+        ContentValues values = new ContentValues();
+        values.put(usuarioConsts.ACTIVE_COLUMN_NAME, 1);
+        try {
+            Log.d("QUE PEDO", "PAPAPA");
+            int affected = db.update(
+                    usuarioConsts.TABLE_NAME,
+                    values,
+                    usuarioConsts.ID_COLUMN_NAME + " = ?",
+                    parameters
+            );
+            db.close();
+            return affected;
+        } catch (Exception e) {
+            db.close();
+            throw e;
+        }
     }
 
     public int update(String id, String phone_number, String name, String image_path) {

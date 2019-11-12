@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.rastreador2.repositories.herramientaRepo;
 import com.example.rastreador2.entidades.Herramienta;
+import com.example.rastreador2.repositories.usuarioRepo;
 
 import java.util.ArrayList;
 
@@ -78,6 +79,12 @@ public class seleccionarherramienta extends AppCompatActivity {
                         if(updated > 0) {
                             Toast.makeText(getApplicationContext(), "Herramienta actualizada", Toast.LENGTH_SHORT).show();
                         }
+                    }
+                    usuarioRepo userRepo = new usuarioRepo(getApplicationContext());
+                    int updatedUser = userRepo.updateActive(userId);
+                    Log.d("CACA", String.valueOf(updatedUser));
+                    if(updatedUser > 0) {
+                        Toast.makeText(getApplicationContext(), "Operador actualizado", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "No se han seleccionado herramientas", Toast.LENGTH_LONG).show();
