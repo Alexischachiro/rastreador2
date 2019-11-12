@@ -4,9 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import com.example.rastreador2.entidades.Herramienta;
 import com.example.rastreador2.conexionSQ;
 import com.example.rastreador2.consts.herramientaConsts;
+import com.example.rastreador2.entidades.Usuario;
 
 import java.util.ArrayList;
 
@@ -15,7 +18,7 @@ public class herramientaRepo {
     conexionSQ conn;
 
     public herramientaRepo(Context context) {
-        conn = new conexionSQ(context, "rastreadordb", null, 9);
+        conn = new conexionSQ(context, "rastreadordb", null, 10);
     };
 
 
@@ -217,5 +220,49 @@ public class herramientaRepo {
         );
         db.close();
         return updated;
+    }
+
+    public ArrayList<Herramienta> getToolsForUser(Integer userId) {
+        SQLiteDatabase db = conn.getReadableDatabase();
+        ArrayList<Herramienta> herramientas = new ArrayList<>();
+        String [] parameters = { userId.toString() };
+        String [] fields = {
+                herramientaConsts.ID_COLUMN_NAME,
+                herramientaConsts.NAME_COLUMN_NAME,
+                herramientaConsts.PHONE_COLUMN_NAME,
+                herramientaConsts.SERIE_COLUMN_NAME,
+                herramientaConsts.ACTIVE_COLUMN_NAME,
+                herramientaConsts.USERID_COLUMN_NAME
+        };
+
+        try {
+            Cursor cursor = db.query(
+                    herramientaConsts.TABLE_NAME,
+                    fields,
+                    herramientaConsts.USERID_COLUMN_NAME + " = ?",
+                    parameters,
+                    null,
+                    null,
+                    null
+            );
+
+            while(cursor.moveToNext()) {
+                Herramienta herramienta = new Herramienta();
+                herramienta.setId(cursor.getInt(0));
+                herramienta.setNombre(cursor.getString(1));
+                herramienta.setPhone_number(cursor.getString(2));
+                herramienta.setSerie(cursor.getString(3));
+                herramienta.setActive(cursor.getInt(4));
+                herramienta.setUserId(cursor.getInt(5));
+                herramientas.add(herramienta);
+            }
+            cursor.close();
+            Log.d("QUEPEDO", herramientas.toString());
+            return herramientas;
+        } catch (Exception e) {
+            return herramientas;
+        } finally {
+            conn.close();
+        }
     }
 }
