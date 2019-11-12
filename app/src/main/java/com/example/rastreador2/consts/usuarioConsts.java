@@ -12,7 +12,7 @@ public class usuarioConsts {
     public static final String CREATE_TABLE = String.format(
             "CREATE TABLE %s(" +
                     "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "%s CHAR(15) NOT NULL, " +
+                    "%s CHAR(15) UNIQUE NOT NULL, " +
                     "%s TEXT NOT NULL, " +
                     "%s INTEGER DEFAULT 0," +
                     "%s TEXT NULL" +

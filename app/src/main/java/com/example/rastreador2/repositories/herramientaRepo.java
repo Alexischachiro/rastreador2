@@ -15,7 +15,7 @@ public class herramientaRepo {
     conexionSQ conn;
 
     public herramientaRepo(Context context) {
-        conn = new conexionSQ(context, "rastreadordb", null, 5);
+        conn = new conexionSQ(context, "rastreadordb", null, 8);
     };
 
 

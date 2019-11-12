@@ -16,7 +16,7 @@ public class usuarioRepo {
     conexionSQ conn;
 
     public usuarioRepo(Context context) {
-        conn = new conexionSQ(context, "rastreadordb", null, 7);
+        conn = new conexionSQ(context, "rastreadordb", null, 8);
     };
 
 

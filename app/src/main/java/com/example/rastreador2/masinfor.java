@@ -11,20 +11,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.rastreador2.repositories.usuarioRepo;
 
 import com.example.rastreador2.entidades.Usuario;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class masinfor extends AppCompatActivity {
 
     String latituD, longituD, horA, fechA;
     TextView latitud, longitud, hora, fecha, userName, userPhone;
+    ImageView operatorImage;
     Integer userId;
     Usuario operator;
 
@@ -58,7 +66,14 @@ public class masinfor extends AppCompatActivity {
         userName.setText(operator.getNombre());
         userPhone = findViewById(R.id.operatorNumber);
         userPhone.setText(operator.getPhone_number());
-
+        operatorImage = findViewById(R.id.operatorImage);
+        File file = new File(operator.getImage_path());
+        try {
+            Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(file));
+            operatorImage.setImageBitmap(bitmap);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }
