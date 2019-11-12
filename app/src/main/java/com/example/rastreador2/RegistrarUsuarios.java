@@ -36,6 +36,9 @@ public class RegistrarUsuarios extends AppCompatActivity {
             Log.d("Inserted ID", insertedId.toString());
             if(insertedId > 0) {
                 Toast.makeText(getApplicationContext(), "Herramienta registrada", Toast.LENGTH_SHORT).show();
+                camponombre.setText("");
+                camposerie.setText("");
+                campoID.setText("");
             } else {
                 Toast.makeText(getApplicationContext(), "Algo falló al registrar", Toast.LENGTH_SHORT).show();
             }

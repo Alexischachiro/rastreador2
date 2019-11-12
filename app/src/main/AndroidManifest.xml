@@ -16,9 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".SeleccionarHerramientaRastrear"></activity>
-        <activity android:name=".desactivarherra"></activity>
+        <activity android:name=".basedatosoperdores"></activity>
+        <activity android:name=".basesdedatos" />
+        <activity android:name=".SeleccionarHerramientaRastrear" />
+        <activity android:name=".desactivarherra" />
         <activity android:name=".detallesOperadorHerrameintas" />
         <activity android:name=".seleccionarherramienta" />
         <activity android:name=".seleccionarOperador" />

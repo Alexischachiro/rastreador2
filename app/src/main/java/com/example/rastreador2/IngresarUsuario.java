@@ -60,7 +60,9 @@ public class IngresarUsuario extends AppCompatActivity {
                     String imagePath = saveImageInExternaStorage(image, name);
                     Long insertedId = new usuarioRepo(getApplicationContext()).create(phoneNumber, name, imagePath);
                     Toast.makeText(getApplicationContext(), "Usuario creado con id " + insertedId.toString(), Toast.LENGTH_LONG).show();
-                } else {
+                    nombre.setText("");
+                    telefono.setText("");
+                    } else {
                     Toast.makeText(getApplicationContext(), "Verifica tus datos", Toast.LENGTH_SHORT).show();
                 }
             }

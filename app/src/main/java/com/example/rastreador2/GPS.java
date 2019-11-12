@@ -66,7 +66,7 @@ public class GPS extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent= new Intent(GPS.this, consultarbase.class);
+                Intent intent= new Intent(GPS.this, basesdedatos.class);
                 startActivity(intent);
             }
         });
