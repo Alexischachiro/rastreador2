@@ -16,7 +16,7 @@ public class usuarioRepo {
     conexionSQ conn;
 
     public usuarioRepo(Context context) {
-        conn = new conexionSQ(context, "rastreadordb", null, 5);
+        conn = new conexionSQ(context, "rastreadordb", null, 7);
     };
 
 
@@ -30,6 +30,9 @@ public class usuarioRepo {
             usuario.setPhone_number(cursor.getString(1));
             usuario.setNombre(cursor.getString(2));
             usuario.setActivo(cursor.getInt(3));
+            if(!cursor.isNull(4)) {
+                usuario.setImage_path(cursor.getString(4));
+            }
             usuarios.add(usuario);
         }
         conn.close();
@@ -44,6 +47,7 @@ public class usuarioRepo {
                 usuarioConsts.PHONE_COLUMN_NAME,
                 usuarioConsts.NAME_COLUMN_NAME,
                 usuarioConsts.ACTIVE_COLUMN_NAME,
+                usuarioConsts.IMAGE_COLUMN_NAME
         };
         String [] parameters = { String.valueOf(id) };
         try {
@@ -61,6 +65,9 @@ public class usuarioRepo {
             usuario.setPhone_number(cursor.getString(1));
             usuario.setNombre(cursor.getString(2));
             usuario.setActivo(cursor.getInt(3));
+            if(!cursor.isNull(4)) {
+                usuario.setImage_path(cursor.getString(4));
+            }
             cursor.close();
             conn.close();
             return usuario;
@@ -72,11 +79,12 @@ public class usuarioRepo {
 
     }
 
-    public long create(String phone_number, String name) {
+    public long create(String phone_number, String name, String image_path) {
         SQLiteDatabase db = conn.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(usuarioConsts.PHONE_COLUMN_NAME, phone_number);
         values.put(usuarioConsts.NAME_COLUMN_NAME, name);
+        values.put(usuarioConsts.IMAGE_COLUMN_NAME, image_path);
         long inserted_id = db.insert(
                 usuarioConsts.TABLE_NAME,
                 null,
@@ -86,12 +94,13 @@ public class usuarioRepo {
         return inserted_id;
     }
 
-    public int update(String id, String phone_number, String name) {
+    public int update(String id, String phone_number, String name, String image_path) {
         SQLiteDatabase db = conn.getWritableDatabase();
         String [] parameters = { id };
         ContentValues values = new ContentValues();
         values.put(usuarioConsts.PHONE_COLUMN_NAME, phone_number);
         values.put(usuarioConsts.NAME_COLUMN_NAME, name);
+        values.put(usuarioConsts.IMAGE_COLUMN_NAME, image_path);
         int affected = db.update(
                 usuarioConsts.TABLE_NAME,
                 values,

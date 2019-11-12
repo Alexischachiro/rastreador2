@@ -5,12 +5,14 @@ public class Usuario {
     private String nombre;
     private String phone_number;
     private Integer activo;
+    private String image_path;
 
-    public Usuario(Integer id, String nombre, String phone_number, Integer activo) {
+    public Usuario(Integer id, String nombre, String phone_number, Integer activo, String image_path) {
         this.id = id;
         this.phone_number = phone_number;
         this.nombre = nombre;
         this.activo = activo;
+        this.image_path = image_path;
     }
 
     public Usuario() {
@@ -47,5 +49,13 @@ public class Usuario {
 
     public void setActivo(Integer activo) {
         this.activo = activo;
+    }
+
+    public void setImage_path(String image_path) {
+        this.image_path = image_path;
+    }
+
+    public String getImage_path() {
+        return image_path;
     }
 }

@@ -3,9 +3,14 @@ package com.example.rastreador2;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +23,12 @@ import android.widget.Toast;
 import com.example.rastreador2.repositories.usuarioRepo;
 import com.example.rastreador2.entidades.Usuario;
 import com.example.rastreador2.consts.usuarioConsts;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.Instant;
+import java.util.Calendar;
 
 public class IngresarUsuario extends AppCompatActivity {
 
@@ -49,8 +60,11 @@ public class IngresarUsuario extends AppCompatActivity {
             public void onClick(View view) {
                 String name = nombre.getText().toString();
                 String phoneNumber = telefono.getText().toString();
-                if(!name.equals("") && !phoneNumber.equals("")) {
-                    Long insertedId = new usuarioRepo(getApplicationContext()).create(phoneNumber, name);
+                Bitmap image = ((BitmapDrawable) imgFoto.getDrawable()).getBitmap();
+                Bitmap emptyBitmap = Bitmap.createBitmap(image.getWidth(), image.getHeight(), image.getConfig());
+                if(!name.equals("") && !phoneNumber.equals("") && !image.sameAs(emptyBitmap)) {
+                    String imagePath = saveImageInExternaStorage(image, name);
+                    Long insertedId = new usuarioRepo(getApplicationContext()).create(phoneNumber, name, imagePath);
                     Toast.makeText(getApplicationContext(), "Usuario creado con id " + insertedId.toString(), Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Verifica tus datos", Toast.LENGTH_SHORT).show();
@@ -64,7 +78,36 @@ public class IngresarUsuario extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode==RESULT_OK && requestCode==1){
             Uri uri=data.getData();
-            imgFoto.setImageURI(uri);
+            try {
+                imgFoto.setImageBitmap(convertViewToBitmap(uri));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    private Bitmap convertViewToBitmap(Uri data) throws IOException {
+        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data);
+        return bitmap;
+    }
+
+    private String saveImageInExternaStorage(Bitmap image, String userName) {
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        File mypath = new File(directory, String.format("%s-%s.jpg", userName, Calendar.getInstance().getTime().toString()));
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            image.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return directory.getAbsolutePath();
     }
 }
