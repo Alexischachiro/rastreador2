@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import com.example.rastreador2.entidades.Usuario;
@@ -24,6 +25,7 @@ public class seleccionarOperador extends AppCompatActivity {
     ArrayList<Usuario> usuarios;
     Usuario userSelected;
     TextView txtUserSelected;
+    final String NOT_OPERATORS_AVAILABLE = "No hay operadores disponibles";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +42,15 @@ public class seleccionarOperador extends AppCompatActivity {
                     intent.putExtra("user_active", userSelected.getActivo());
                     intent.putExtra("user_id", userSelected.getId());
                     startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Selecciona un operador", Toast.LENGTH_LONG).show();
                 }
             }
         });
         listViewUsuarios = findViewById(R.id.listViewUsers);
         txtUserSelected = findViewById(R.id.txtUserSelected);
         usuarioRepo repo = new usuarioRepo(this);
-        usuarios = repo.getAll();
+        usuarios = repo.getNonActive();
         this.getUserLists(usuarios);
 
         ArrayAdapter adapter = new ArrayAdapter(
@@ -56,16 +60,18 @@ public class seleccionarOperador extends AppCompatActivity {
         );
         listViewUsuarios.setAdapter(adapter);
 
-        listViewUsuarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Log.d("ONCLICK", "item " + listViewUsuarios.getItemAtPosition(position));
-                Log.d("ONCLICK", "position " + position );
-                Log.d("ONCLICK", "id " + id);
-                Log.d("ONCLICK", "view " + view.toString());
-                setSelectedUser(position);
-            }
-        });
+        if(listaUsuarios.size() != 1 || !listaUsuarios.get(0).equals(NOT_OPERATORS_AVAILABLE)) {
+            listViewUsuarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                    Log.d("ONCLICK", "item " + listViewUsuarios.getItemAtPosition(position));
+                    Log.d("ONCLICK", "position " + position );
+                    Log.d("ONCLICK", "id " + id);
+                    Log.d("ONCLICK", "view " + view.toString());
+                    setSelectedUser(position);
+                }
+            });
+        }
     }
 
     private void getUserLists(ArrayList<Usuario> usuarios) {
@@ -74,7 +80,7 @@ public class seleccionarOperador extends AppCompatActivity {
                 listaUsuarios.add(usuarios.get(i).getNombre());
             }
         } else {
-            listaUsuarios.add("No existen usuarios registrados");
+            listaUsuarios.add(NOT_OPERATORS_AVAILABLE);
         }
     }
 

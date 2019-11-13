@@ -76,7 +76,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Ultima hora de rastreo"
+                android:text="Última hora de rastreo"
                 android:textColor="@android:color/background_light"
                 android:textSize="20dp"></TextView>
 
@@ -99,7 +99,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Ultima fecha de rastreo"
+                android:text="Última fecha de rastreo"
                 android:textColor="@android:color/background_light"
                 android:textSize="20dp"></TextView>
 

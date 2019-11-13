@@ -15,7 +15,7 @@ public class basesdedatos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basesdedatos);
 
-        btnherra = (Button)findViewById(R.id.btnherra);
+        btnherra = findViewById(R.id.btnherra);
         btnherra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,7 +24,7 @@ public class basesdedatos extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnope = (Button)findViewById(R.id.btnusuario);
+        btnope = findViewById(R.id.btnusuario);
         btnope.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

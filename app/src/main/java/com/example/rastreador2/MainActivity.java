@@ -80,7 +80,7 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent= new Intent(MainActivity.this, GPS.class);
+                Intent intent= new Intent(MainActivity.this, SeleccionarHerramientaRastrear.class);
                 startActivity(intent);
             }
         });

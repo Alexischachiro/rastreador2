@@ -18,6 +18,8 @@ public class SeleccionarHerramientaRastrear extends AppCompatActivity {
     ListView listViewHerramientasRastrear;
     ArrayList<Herramienta> herramientas;
     ArrayList<String> listHerramientas = new ArrayList<>();
+    final String NOT_TOOLS_AVAILABLE = "No hay herramientas en uso en este momento";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,18 +35,20 @@ public class SeleccionarHerramientaRastrear extends AppCompatActivity {
         );
         listViewHerramientasRastrear.setAdapter(adapter);
 
-        // Handle click on a tool for track
-        listViewHerramientasRastrear.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Log.d("ONCLICK","item" + listViewHerramientasRastrear.getItemAtPosition(position));
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("tool_phone_id", herramientas.get(position).getPhoneNumber());
-                intent.putExtra("tool_name", herramientas.get(position).getNombre());
-                intent.putExtra("tool_user_id", herramientas.get(position).getUserId());
-                startActivity(intent);
-            }
-        });
+        if(listHerramientas.size() != 1 || !listHerramientas.get(0).equals(NOT_TOOLS_AVAILABLE)) {
+            // Handle click on a tool for track
+            listViewHerramientasRastrear.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    Log.d("ONCLICK","item" + listViewHerramientasRastrear.getItemAtPosition(position));
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("tool_phone_id", herramientas.get(position).getPhoneNumber());
+                    intent.putExtra("tool_name", herramientas.get(position).getNombre());
+                    intent.putExtra("tool_user_id", herramientas.get(position).getUserId());
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     private void getHerramientaStringList(ArrayList<Herramienta> herramientas) {
@@ -57,7 +61,7 @@ public class SeleccionarHerramientaRastrear extends AppCompatActivity {
                 ));
             }
         } else {
-            listHerramientas.add("No hay herramientas en uso en este momento");
+            listHerramientas.add(NOT_TOOLS_AVAILABLE);
         }
     }
 }

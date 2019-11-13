@@ -44,8 +44,7 @@
             android:layout_weight="0.33"
             android:background="@color/transp"
             android:gravity="center"
-            android:onClick="onClick"
-            android:text="Ingresar más Herramientas "
+            android:text="Ingresar más herramientas "
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
@@ -56,8 +55,7 @@
             android:layout_weight="0.33"
             android:background="@color/transp"
             android:gravity="center"
-            android:onClick="onClick"
-            android:text="Desactivar Herrameintas  "
+            android:text="Desactivar herramientas  "
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
         <Button
@@ -67,8 +65,7 @@
             android:layout_weight="0.33"
             android:background="@color/transp"
             android:gravity="center"
-            android:onClick="onClick"
-            android:text="Desactivar todas las Herrameintas"
+            android:text="Desactivar todas las herramientas"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 

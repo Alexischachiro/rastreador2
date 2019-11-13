@@ -59,7 +59,8 @@
         android:background="@color/transp"
         android:gravity="center"
         android:textStyle="bold"
-        android:text="Seleccinar las Herramientas a ocupar"
+        android:text="Seleccionar las herramientas a utilizar"
+        android:layout_marginTop="50dp"
         android:textColor="#FFFFFF" />
 
 

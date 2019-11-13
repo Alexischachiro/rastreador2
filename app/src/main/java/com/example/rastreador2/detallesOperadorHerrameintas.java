@@ -20,6 +20,7 @@ public class detallesOperadorHerrameintas extends AppCompatActivity {
     ListView listViewOperatorsStatus;
     ArrayList<String> operatorsStatusList = new ArrayList<>();
     ArrayList<Usuario> operatorsStatus;
+    final String NOT_OPERATORS_AVAILABLE = "No hay usuario activos";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +38,19 @@ public class detallesOperadorHerrameintas extends AppCompatActivity {
                 operatorsStatusList
         );
         listViewOperatorsStatus.setAdapter(adapter);
-
-        listViewOperatorsStatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent = new Intent(getApplicationContext(), desactivarherra.class);
-                intent.putExtra("user_id", operatorsStatus.get(position).getId());
-                intent.putExtra("user_name", operatorsStatus.get(position).getNombre());
-                intent.putExtra("user_phone", operatorsStatus.get(position).getPhone_number());
-                intent.putExtra("user_image", operatorsStatus.get(position).getImage_path());
-                startActivity(intent);
-            }
-        });
+        if(operatorsStatusList.size() != 1 || !operatorsStatusList.get(0).equals(NOT_OPERATORS_AVAILABLE)) {
+            listViewOperatorsStatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    Intent intent = new Intent(getApplicationContext(), desactivarherra.class);
+                    intent.putExtra("user_id", operatorsStatus.get(position).getId());
+                    intent.putExtra("user_name", operatorsStatus.get(position).getNombre());
+                    intent.putExtra("user_phone", operatorsStatus.get(position).getPhone_number());
+                    intent.putExtra("user_image", operatorsStatus.get(position).getImage_path());
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     private void getOperatorsList(ArrayList<Usuario> usuarios) {
@@ -58,7 +60,7 @@ public class detallesOperadorHerrameintas extends AppCompatActivity {
                 operatorsStatusList.add(usuarios.get(i).getNombre());
             }
         } else {
-            operatorsStatusList.add("No hay usuario activos");
+            operatorsStatusList.add(NOT_OPERATORS_AVAILABLE);
         }
     }
 }

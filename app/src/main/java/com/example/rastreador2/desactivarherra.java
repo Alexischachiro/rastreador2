@@ -36,6 +36,9 @@ public class desactivarherra extends AppCompatActivity {
     ArrayList<Integer> selectedRemoveToolsIndexes = new ArrayList<>();
     TextView textViewLayout;
 
+    final String NOT_TOOLS_RELATED = "Este operador no cuenta con herramientas asignadas";
+    final String NOT_TOOLS_AVAILABLE = "No existen herramientas disponibles para asignar";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,13 +108,16 @@ public class desactivarherra extends AppCompatActivity {
                 );
 
                 listViewToolsForUser.setAdapter(adapter2);
-                listViewToolsForUser.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                listViewToolsForUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                        handleAddNewTools(position);
-                    }
-                });
+
+                if(herramientasList.size() != 1 || !herramientasList.get(0).equals(NOT_TOOLS_AVAILABLE)) {
+                    listViewToolsForUser.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                    listViewToolsForUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                            handleAddNewTools(position);
+                        }
+                    });
+                }
             }
         });
 
@@ -130,14 +136,15 @@ public class desactivarherra extends AppCompatActivity {
                         herramientasList
                 );
                 listViewToolsForUser.setAdapter(adapter3);
-                listViewToolsForUser.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                listViewToolsForUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                        handleRemoveTools(position);
-                    }
-                });
-
+                if(herramientasList.size() != 1 || !herramientasList.get(0).equals(NOT_TOOLS_RELATED)) {
+                    listViewToolsForUser.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                    listViewToolsForUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                            handleRemoveTools(position);
+                        }
+                    });
+                }
             }
         });
 
@@ -157,6 +164,8 @@ public class desactivarherra extends AppCompatActivity {
                 } else if(mode.equals("removing")) {
                     removeTools();
                 }
+                Intent intentito = new Intent(getApplicationContext(), GPS.class);
+                startActivity(intentito);
             }
         });
     }
@@ -170,7 +179,11 @@ public class desactivarherra extends AppCompatActivity {
                 ));
             }
         } else {
-            herramientasList.add("Este operador no cuenta con herramientas asignadas");
+            if(mode == "adding") {
+                herramientasList.add(NOT_TOOLS_AVAILABLE);
+            } else {
+                herramientasList.add(NOT_TOOLS_RELATED);
+            }
         }
     }
 
@@ -244,8 +257,10 @@ public class desactivarherra extends AppCompatActivity {
         usuarioRepo userRepository = new usuarioRepo(getApplicationContext());
         int userUpdated = userRepository.disactiveUser(userId);
 
-        if(toolsUpdated > 0 && userUpdated > 0) {
-            Toast.makeText(getApplicationContext(), "Usuario y herramientas desactivadas", Toast.LENGTH_LONG).show();
+        if(userUpdated > 0) {
+            Toast.makeText(getApplicationContext(), "Usuario desactivado", Toast.LENGTH_LONG).show();
+            Intent intentote = new Intent(getApplicationContext(), GPS.class);
+            startActivity(intentote);
         } else {
             Toast.makeText(getApplicationContext(), "Algo falló al desactivar", Toast.LENGTH_LONG).show();
         }

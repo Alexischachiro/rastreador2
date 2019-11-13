@@ -17,7 +17,7 @@ public class usuarioRepo {
     conexionSQ conn;
 
     public usuarioRepo(Context context) {
-        conn = new conexionSQ(context, "rastreadordb", null, 11);
+        conn = new conexionSQ(context, "rastreadordb", null, 12);
     };
 
 
@@ -82,7 +82,6 @@ public class usuarioRepo {
 
     public ArrayList<Usuario> getActive() {
         SQLiteDatabase db = conn.getReadableDatabase();
-        Usuario usuario = new Usuario();
         ArrayList<Usuario> usuarios = new ArrayList<>();
         String [] fields = {
                 usuarioConsts.ID_COLUMN_NAME,
@@ -102,6 +101,7 @@ public class usuarioRepo {
                     null
             );
             while(cursor.moveToNext()) {
+                Usuario usuario = new Usuario();
                 usuario.setId(cursor.getInt(0));
                 usuario.setPhone_number(cursor.getString(1));
                 usuario.setNombre(cursor.getString(2));

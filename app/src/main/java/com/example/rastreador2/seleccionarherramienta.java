@@ -24,6 +24,7 @@ public class seleccionarherramienta extends AppCompatActivity {
     TextView txtUserSelected;
     ListView listViewHerramientas;
     String userName, userPhoneNumber;
+    final String NOT_TOOLS_AVAILABLE ="No existen herramientas registrados";
     Integer userActive, userId;
     ArrayList<Herramienta> herramientas;
     ArrayList<String> listHerramientas = new ArrayList<>();
@@ -51,13 +52,16 @@ public class seleccionarherramienta extends AppCompatActivity {
                 listHerramientas
         );
         listViewHerramientas.setAdapter(adapter);
-        listViewHerramientas.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        listViewHerramientas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                handleSelectHerramienta(position);
-            }
-        });
+
+        if(listHerramientas.size() != 1 || !listHerramientas.get(0).equals(NOT_TOOLS_AVAILABLE)) {
+            listViewHerramientas.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+            listViewHerramientas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                    handleSelectHerramienta(position);
+                }
+            });
+        }
         txtUserSelected = findViewById(R.id.txtUser);
         txtUserSelected.setText(String.format(
                 "Operador seleccionado: %s",
@@ -85,6 +89,8 @@ public class seleccionarherramienta extends AppCompatActivity {
                     Log.d("CACA", String.valueOf(updatedUser));
                     if(updatedUser > 0) {
                         Toast.makeText(getApplicationContext(), "Operador actualizado", Toast.LENGTH_SHORT).show();
+                        Intent intentito = new Intent(getApplicationContext(), GPS.class);
+                        startActivity(intentito);
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "No se han seleccionado herramientas", Toast.LENGTH_LONG).show();
@@ -104,7 +110,7 @@ public class seleccionarherramienta extends AppCompatActivity {
                         );
             }
         } else {
-            listHerramientas.add("No existen herramientas registrados");
+            listHerramientas.add(NOT_TOOLS_AVAILABLE);
         }
     }
 
