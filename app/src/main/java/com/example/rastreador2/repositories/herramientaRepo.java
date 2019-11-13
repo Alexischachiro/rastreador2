@@ -238,6 +238,22 @@ public class herramientaRepo {
         return updated;
     }
 
+    public int removeToolsForUser(Integer userId) {
+        SQLiteDatabase db = conn.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(herramientaConsts.ACTIVE_COLUMN_NAME, 0);
+        values.putNull(herramientaConsts.USERID_COLUMN_NAME);
+        String [] parameters = { userId.toString() };
+        int updated = db.update(
+                herramientaConsts.TABLE_NAME,
+                values,
+                herramientaConsts.USERID_COLUMN_NAME + " = ?",
+                parameters
+        );
+        db.close();
+        return updated;
+    }
+
     public ArrayList<Herramienta> getToolsForUser(Integer userId) {
         SQLiteDatabase db = conn.getReadableDatabase();
         ArrayList<Herramienta> herramientas = new ArrayList<>();

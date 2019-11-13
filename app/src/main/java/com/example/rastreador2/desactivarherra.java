@@ -1,7 +1,9 @@
 package com.example.rastreador2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.example.rastreador2.entidades.Herramienta;
 import com.example.rastreador2.entidades.Usuario;
 import com.example.rastreador2.repositories.herramientaRepo;
+import com.example.rastreador2.repositories.usuarioRepo;
 
 import java.util.ArrayList;
 
@@ -64,6 +67,26 @@ public class desactivarherra extends AppCompatActivity {
         );
 
         listViewToolsForUser.setAdapter(adapter);
+
+        //Creating AlertDialog
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setTitle("Confirmar");
+        builder.setMessage("¿Estás seguro de desactivar al usuario y todas sus herramientas?");
+        builder.setPositiveButton("Confirmar",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        unactiveToolsAndOperator();
+                    }
+                });
+        builder.setNegativeButton("Cancelar",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
 
 
         btnAddTools.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +138,14 @@ public class desactivarherra extends AppCompatActivity {
                     }
                 });
 
+            }
+        });
+
+        btnDisasbleOperator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
@@ -204,5 +235,20 @@ public class desactivarherra extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "No has seleccionado ninguna herramienta", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void unactiveToolsAndOperator() {
+        herramientaRepo herrramientaRepository = new herramientaRepo(getApplicationContext());
+        int toolsUpdated = herrramientaRepository.removeToolsForUser(userId);
+
+        usuarioRepo userRepository = new usuarioRepo(getApplicationContext());
+        int userUpdated = userRepository.disactiveUser(userId);
+
+        if(toolsUpdated > 0 && userUpdated > 0) {
+            Toast.makeText(getApplicationContext(), "Usuario y herramientas desactivadas", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Algo falló al desactivar", Toast.LENGTH_LONG).show();
+        }
+
     }
 }

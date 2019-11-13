@@ -197,6 +197,22 @@ public class usuarioRepo {
         }
     }
 
+    public int disactiveUser(Integer userId) {
+        SQLiteDatabase db = conn.getWritableDatabase();
+        String [] parameters = { userId.toString() };
+        ContentValues values = new ContentValues();
+        values.put(usuarioConsts.ACTIVE_COLUMN_NAME, 0);
+
+        int affected = db.update(
+                usuarioConsts.TABLE_NAME,
+                values,
+                usuarioConsts.ID_COLUMN_NAME + " = ?",
+                parameters
+        );
+        db.close();
+        return affected;
+    }
+
     public int update(String id, String phone_number, String name, String image_path) {
         SQLiteDatabase db = conn.getWritableDatabase();
         String [] parameters = { id };
