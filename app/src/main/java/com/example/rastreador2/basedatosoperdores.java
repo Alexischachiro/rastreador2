@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,6 +72,25 @@ public class basedatosoperdores extends AppCompatActivity {
         );
 
         listviewOperadores.setAdapter(adapter);
+
+        if(operadores.size() != 1 || !operadores.get(0).equals(NOT_OPERATORS)) {
+            listviewOperadores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    Usuario operador = operadores.get(position);
+                    nombreOperador.setText(operador.getNombre());
+                    telefonoOperador.setText(operador.getPhone_number());
+                    File file = new File(operador.getImage_path());
+                    try {
+                        Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(file));
+                        imageViewOperador.setImageBitmap(bitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+        }
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
