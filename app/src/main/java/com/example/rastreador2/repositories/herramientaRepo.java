@@ -18,7 +18,7 @@ public class herramientaRepo {
     conexionSQ conn;
 
     public herramientaRepo(Context context) {
-        conn = new conexionSQ(context, "rastreadordb", null, 10);
+        conn = new conexionSQ(context, "rastreadordb", null, 11);
     };
 
 
@@ -211,6 +211,22 @@ public class herramientaRepo {
         ContentValues values = new ContentValues();
         values.put(herramientaConsts.ACTIVE_COLUMN_NAME, 1);
         values.put(herramientaConsts.USERID_COLUMN_NAME, userId);
+        String [] parameters = { id.toString() };
+        int updated = db.update(
+                herramientaConsts.TABLE_NAME,
+                values,
+                herramientaConsts.ID_COLUMN_NAME + " = ?",
+                parameters
+        );
+        db.close();
+        return updated;
+    }
+
+    public int unAssing(Integer id) {
+        SQLiteDatabase db = conn.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(herramientaConsts.ACTIVE_COLUMN_NAME, 0);
+        values.putNull(herramientaConsts.USERID_COLUMN_NAME);
         String [] parameters = { id.toString() };
         int updated = db.update(
                 herramientaConsts.TABLE_NAME,
