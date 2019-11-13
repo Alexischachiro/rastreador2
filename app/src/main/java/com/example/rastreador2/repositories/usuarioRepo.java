@@ -80,6 +80,45 @@ public class usuarioRepo {
 
     }
 
+    public Usuario getOneByName(String name) {
+        SQLiteDatabase db = conn.getReadableDatabase();
+        Usuario usuario = new Usuario();
+        String[] fields = {
+                usuarioConsts.ID_COLUMN_NAME,
+                usuarioConsts.PHONE_COLUMN_NAME,
+                usuarioConsts.NAME_COLUMN_NAME,
+                usuarioConsts.ACTIVE_COLUMN_NAME,
+                usuarioConsts.IMAGE_COLUMN_NAME
+        };
+        String[] parameters = {name};
+        try {
+            Cursor cursor = db.query(
+                    usuarioConsts.TABLE_NAME,
+                    fields,
+                    usuarioConsts.NAME_COLUMN_NAME + " = ?",
+                    parameters,
+                    null,
+                    null,
+                    null
+            );
+            cursor.moveToFirst();
+            usuario.setId(cursor.getInt(0));
+            usuario.setPhone_number(cursor.getString(1));
+            usuario.setNombre(cursor.getString(2));
+            usuario.setActivo(cursor.getInt(3));
+            if (!cursor.isNull(4)) {
+                usuario.setImage_path(cursor.getString(4));
+            }
+            cursor.close();
+            conn.close();
+            return usuario;
+        } catch (Exception e) {
+            conn.close();
+            usuario = null;
+            return usuario;
+        }
+    }
+
     public ArrayList<Usuario> getActive() {
         SQLiteDatabase db = conn.getReadableDatabase();
         ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -213,9 +252,9 @@ public class usuarioRepo {
         return affected;
     }
 
-    public int update(String id, String phone_number, String name, String image_path) {
+    public int update(Integer id, String phone_number, String name, String image_path) {
         SQLiteDatabase db = conn.getWritableDatabase();
-        String [] parameters = { id };
+        String [] parameters = { id.toString() };
         ContentValues values = new ContentValues();
         values.put(usuarioConsts.PHONE_COLUMN_NAME, phone_number);
         values.put(usuarioConsts.NAME_COLUMN_NAME, name);
@@ -230,9 +269,9 @@ public class usuarioRepo {
         return affected;
     }
 
-    public int delete(String id) {
+    public int delete(Integer id) {
         SQLiteDatabase db = conn.getWritableDatabase();
-        String [] parameters = { id };
+        String [] parameters = { id.toString() };
         int deleted = db.delete(
                 usuarioConsts.TABLE_NAME,
                 usuarioConsts.ID_COLUMN_NAME + " = ?",

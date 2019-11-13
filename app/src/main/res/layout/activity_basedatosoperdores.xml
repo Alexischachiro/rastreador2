@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/nombreoper"
+            android:id="@+id/nameOperadorDB"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="@color/transp"
@@ -26,7 +26,7 @@
             android:textSize="18sp"></EditText>
 
         <Button
-            android:id="@+id/buscar"
+            android:id="@+id/buscarOperadorDB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/transp"
@@ -42,20 +42,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <EditText
-            android:id="@+id/nombre"
-            android:layout_width="match_parent"
+            android:id="@+id/phoneOperadorDB"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="@color/transp"
-            android:hint="Numero Telefónico"
+            android:hint="Número telefónico"
             android:textColorHint="#B9B9B9"
             android:textColor="#FFFFFF"
             android:textSize="18sp"></EditText>
-
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/imageOperatorDB"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"></ImageView>
