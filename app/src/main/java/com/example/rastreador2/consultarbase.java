@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -18,7 +19,9 @@ public class consultarbase extends AppCompatActivity {
     ListView listViewPersonas;
     ArrayList<String> listaInformacion = new ArrayList<>();
     ArrayAdapter adatador;
+    ArrayList<Herramienta> herramientas = new ArrayList<>();
     herramientaRepo repo;
+    final String NOT_TOOLS_REGISTERED = "No existen herramientas registradas";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,13 +29,24 @@ public class consultarbase extends AppCompatActivity {
 
         listViewPersonas = findViewById(R.id.listViewPersonas);
         repo = new herramientaRepo(this);
-        ArrayList<Herramienta> herramientas = repo.getAll();
-        Log.d("caca", herramientas.toString());
+        herramientas = repo.getAll();
         this.obtenerLista(herramientas);
 
-         adatador = new ArrayAdapter(this,R.layout.layoutlist, listaInformacion);
+        adatador = new ArrayAdapter(this,R.layout.layoutlist, listaInformacion);
         adatador.notifyDataSetChanged();
         listViewPersonas.setAdapter(adatador);
+
+        if(herramientas.size() != 1 || !herramientas.get(0).equals(NOT_TOOLS_REGISTERED)) {
+            listViewPersonas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    Herramienta herramienta = herramientas.get(position);
+                    campoid.setText(herramienta.getPhoneNumber());
+                    camponombre.setText(herramienta.getNombre());
+                    camposerie.setText(herramienta.getSerie());
+                }
+            });
+        }
 
         campoid = findViewById(R.id.ID);
         camponombre = findViewById(R.id.nombre);
@@ -49,7 +63,7 @@ public class consultarbase extends AppCompatActivity {
                         + herramientas.get(i).getNombre());
             }
         } else {
-            listaInformacion.add("No hay herramientas aún");
+            listaInformacion.add(NOT_TOOLS_REGISTERED);
         }
 
     }
@@ -83,7 +97,10 @@ public class consultarbase extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(),"Error al eliminar", Toast.LENGTH_SHORT).show();
         }
-        ArrayList<Herramienta> herramientas = repo.getAll();
+        herramientas.clear();
+        listaInformacion.clear();
+        limpiar();
+        herramientas = repo.getAll();
         this.obtenerLista(herramientas);
         adatador.notifyDataSetChanged();
 
@@ -103,7 +120,9 @@ public class consultarbase extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Error al actualizar", Toast.LENGTH_SHORT).show();
         }
         limpiar();
-        ArrayList<Herramienta> herramientas = repo.getAll();
+        herramientas.clear();
+        listaInformacion.clear();
+        herramientas = repo.getAll();
         this.obtenerLista(herramientas);
         adatador.notifyDataSetChanged();
     }
