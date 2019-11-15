@@ -178,12 +178,13 @@ public class herramientaRepo {
         return inserted_id;
     }
 
-    public int update(String phone_number, String name, String serie) {
+    public int update(String original_phone_number, String phone_number, String name, String serie) {
         SQLiteDatabase db = conn.getWritableDatabase();
-        String [] parameters = { phone_number };
+        String [] parameters = { original_phone_number };
         ContentValues values = new ContentValues();
         values.put(herramientaConsts.NAME_COLUMN_NAME, name);
         values.put(herramientaConsts.SERIE_COLUMN_NAME, serie);
+        values.put(herramientaConsts.PHONE_COLUMN_NAME, phone_number);
         int affected = db.update(
                 herramientaConsts.TABLE_NAME,
                 values,

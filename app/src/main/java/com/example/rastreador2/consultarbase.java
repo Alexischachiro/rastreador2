@@ -1,11 +1,15 @@
 package com.example.rastreador2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -21,7 +25,9 @@ public class consultarbase extends AppCompatActivity {
     ArrayAdapter adatador;
     ArrayList<Herramienta> herramientas = new ArrayList<>();
     herramientaRepo repo;
+    Button btnBuscar, btnActualizar, btnEliminar;
     final String NOT_TOOLS_REGISTERED = "No existen herramientas registradas";
+    String originalId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +47,7 @@ public class consultarbase extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     Herramienta herramienta = herramientas.get(position);
+                    originalId = herramienta.getPhoneNumber();
                     campoid.setText(herramienta.getPhoneNumber());
                     camponombre.setText(herramienta.getNombre());
                     camposerie.setText(herramienta.getSerie());
@@ -51,6 +58,53 @@ public class consultarbase extends AppCompatActivity {
         campoid = findViewById(R.id.ID);
         camponombre = findViewById(R.id.nombre);
         camposerie = findViewById(R.id.numeroserie);
+
+        btnBuscar = findViewById(R.id.buscar);
+        btnActualizar = findViewById(R.id.BtnActualizar);
+        btnEliminar = findViewById(R.id.eliminar);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setTitle("Confirmar");
+        builder.setMessage("¿Estás seguro de eliminar a esta herramienta?");
+        builder.setPositiveButton("Confirmar",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        eliminarusuario();
+                        adatador.notifyDataSetChanged();
+                    }
+                });
+        builder.setNegativeButton("Cancelar",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String phone_number = campoid.getText().toString();
+                buscar(phone_number);
+            }
+        });
+
+        btnActualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actualizarusuario();
+            }
+        });
+
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
     }
 
@@ -69,23 +123,20 @@ public class consultarbase extends AppCompatActivity {
     }
 
 
-    public void onClick (View view){
-
-        switch (view.getId()) {
-
-            case R.id.buscar:
-                String phone_number = campoid.getText().toString();
-                buscar(phone_number);
-                break;
-            case R.id.BtnActualizar:
-                actualizarusuario();
-                break;
-            case R.id.eliminar:
-                eliminarusuario();
-                break;
-        }
-
-    }
+//    public void onClick (View view){
+//
+//        switch (view.getId()) {
+//
+//            case R.id.buscar:
+//                String phone_number = campoid.getText().toString();
+//                buscar(phone_number);
+//                break;
+//            case R.id.BtnActualizar:
+//                actualizarusuario();
+//                break;
+//        }
+//
+//    }
 
     private void eliminarusuario() {
         String phone_number = campoid.getText().toString();
@@ -113,7 +164,7 @@ public class consultarbase extends AppCompatActivity {
         String name = camponombre.getText().toString();
         String serie = camposerie.getText().toString();
 
-        int rowsAffected = new herramientaRepo(this).update(phone_number, name, serie);
+        int rowsAffected = new herramientaRepo(this).update(originalId, phone_number, name, serie);
         if(rowsAffected > 0) {
             Toast.makeText(getApplicationContext(),"Herramienta actualizada", Toast.LENGTH_SHORT).show();
         } else {
@@ -130,6 +181,7 @@ public class consultarbase extends AppCompatActivity {
     private void buscar(String phone_number) {
         try {
             Herramienta herramienta = new herramientaRepo(this).getOne(phone_number);
+            originalId = phone_number;
             camponombre.setText(herramienta.getNombre());
             camposerie.setText(herramienta.getSerie());
         } catch (Exception e){

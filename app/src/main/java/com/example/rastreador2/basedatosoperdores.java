@@ -78,6 +78,7 @@ public class basedatosoperdores extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     Usuario operador = operadores.get(position);
+                    actualUser = operador;
                     nombreOperador.setText(operador.getNombre());
                     telefonoOperador.setText(operador.getPhone_number());
                     File file = new File(operador.getImage_path());
