@@ -35,6 +35,4 @@ public class usuarioConsts {
             IMAGE_COLUMN_NAME,
             TABLE_NAME
             );
-
-
 }

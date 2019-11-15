@@ -43,6 +43,4 @@ public class herramientaConsts {
             USERID_COLUMN_NAME,
             TABLE_NAME
             );
-
-
 }

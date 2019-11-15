@@ -4,13 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
+import java.util.ArrayList;
 import com.example.rastreador2.conexionSQ;
 import com.example.rastreador2.entidades.Usuario;
 import com.example.rastreador2.consts.usuarioConsts;
 
-import java.util.ArrayList;
 
 public class usuarioRepo {
 
@@ -36,6 +34,7 @@ public class usuarioRepo {
             }
             usuarios.add(usuario);
         }
+        cursor.close();
         conn.close();
         return usuarios;
     }
@@ -51,6 +50,7 @@ public class usuarioRepo {
                 usuarioConsts.IMAGE_COLUMN_NAME
         };
         String [] parameters = { String.valueOf(id) };
+
         try {
             Cursor cursor = db.query(
                     usuarioConsts.TABLE_NAME,
@@ -91,6 +91,7 @@ public class usuarioRepo {
                 usuarioConsts.IMAGE_COLUMN_NAME
         };
         String[] parameters = {name};
+
         try {
             Cursor cursor = db.query(
                     usuarioConsts.TABLE_NAME,
@@ -129,11 +130,12 @@ public class usuarioRepo {
                 usuarioConsts.ACTIVE_COLUMN_NAME,
                 usuarioConsts.IMAGE_COLUMN_NAME
         };
+
         try {
             Cursor cursor = db.query(
                     usuarioConsts.TABLE_NAME,
                     fields,
-                    usuarioConsts.ACTIVE_COLUMN_NAME+ " = 1",
+                    usuarioConsts.ACTIVE_COLUMN_NAME + " = 1",
                     null,
                     null,
                     null,
@@ -170,11 +172,12 @@ public class usuarioRepo {
                 usuarioConsts.ACTIVE_COLUMN_NAME,
                 usuarioConsts.IMAGE_COLUMN_NAME
         };
+
         try {
             Cursor cursor = db.query(
                     usuarioConsts.TABLE_NAME,
                     fields,
-                    usuarioConsts.ACTIVE_COLUMN_NAME+ " = 0",
+                    usuarioConsts.ACTIVE_COLUMN_NAME + " = 0",
                     null,
                     null,
                     null,
@@ -215,13 +218,11 @@ public class usuarioRepo {
     }
 
     public int updateActive(Integer userId) {
-        Log.d("El userID", String.valueOf(userId));
         SQLiteDatabase db = conn.getWritableDatabase();
         String [] parameters = { String.valueOf(userId) };
         ContentValues values = new ContentValues();
         values.put(usuarioConsts.ACTIVE_COLUMN_NAME, 1);
         try {
-            Log.d("QUE PEDO", "PAPAPA");
             int affected = db.update(
                     usuarioConsts.TABLE_NAME,
                     values,

@@ -9,8 +9,14 @@ public class Herramienta {
     private Integer active;
     private Integer userId;
 
-
-    public Herramienta(Integer id, String phone_number, String nombre, String serie, Integer userId, Integer active) {
+    public Herramienta (
+            Integer id,
+            String phone_number,
+            String nombre,
+            String serie,
+            Integer userId,
+            Integer active
+    ) {
 
         this.id = id;
         this.phone_number = phone_number;

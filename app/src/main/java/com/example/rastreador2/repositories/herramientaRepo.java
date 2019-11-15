@@ -4,12 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
 import com.example.rastreador2.entidades.Herramienta;
 import com.example.rastreador2.conexionSQ;
 import com.example.rastreador2.consts.herramientaConsts;
-import com.example.rastreador2.entidades.Usuario;
 
 import java.util.ArrayList;
 
@@ -36,6 +33,7 @@ public class herramientaRepo {
             herramienta.setUserId(cursor.getInt(5));
             herramientas.add(herramienta);
         }
+        cursor.close();
         conn.close();
         return herramientas;
     }
@@ -51,6 +49,7 @@ public class herramientaRepo {
                 herramientaConsts.ACTIVE_COLUMN_NAME,
                 herramientaConsts.USERID_COLUMN_NAME
         };
+
         try {
             Cursor cursor = db.query(
                     herramientaConsts.TABLE_NAME,
@@ -93,6 +92,7 @@ public class herramientaRepo {
                 herramientaConsts.ACTIVE_COLUMN_NAME,
                 herramientaConsts.USERID_COLUMN_NAME
         };
+
         try {
             Cursor cursor = db.query(
                     herramientaConsts.TABLE_NAME,
@@ -135,6 +135,7 @@ public class herramientaRepo {
                 herramientaConsts.USERID_COLUMN_NAME
         };
         String [] parameters = { phone_number };
+
         try {
             Cursor cursor = db.query(
                     herramientaConsts.TABLE_NAME,
@@ -290,7 +291,6 @@ public class herramientaRepo {
                 herramientas.add(herramienta);
             }
             cursor.close();
-            Log.d("QUEPEDO", herramientas.toString());
             return herramientas;
         } catch (Exception e) {
             return herramientas;

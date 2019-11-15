@@ -3,7 +3,6 @@ package com.example.rastreador2;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
@@ -22,10 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.example.rastreador2.entidades.Usuario;
 import com.example.rastreador2.repositories.usuarioRepo;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -222,7 +219,7 @@ public class basedatosoperdores extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RESULT_OK && requestCode==1){
+        if (resultCode == RESULT_OK && requestCode==1){
             Uri uri=data.getData();
             try {
                 imageViewOperador.setImageBitmap(convertViewToBitmap(uri));

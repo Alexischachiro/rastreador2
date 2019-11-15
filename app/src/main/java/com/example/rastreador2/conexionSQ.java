@@ -3,8 +3,6 @@ package com.example.rastreador2;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
 import androidx.annotation.Nullable;
 import com.example.rastreador2.consts.herramientaConsts;
 import com.example.rastreador2.consts.usuarioConsts;

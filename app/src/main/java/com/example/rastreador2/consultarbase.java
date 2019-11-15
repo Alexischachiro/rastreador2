@@ -2,10 +2,8 @@ package com.example.rastreador2;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -121,22 +119,6 @@ public class consultarbase extends AppCompatActivity {
         }
 
     }
-
-
-//    public void onClick (View view){
-//
-//        switch (view.getId()) {
-//
-//            case R.id.buscar:
-//                String phone_number = campoid.getText().toString();
-//                buscar(phone_number);
-//                break;
-//            case R.id.BtnActualizar:
-//                actualizarusuario();
-//                break;
-//        }
-//
-//    }
 
     private void eliminarusuario() {
         String phone_number = campoid.getText().toString();

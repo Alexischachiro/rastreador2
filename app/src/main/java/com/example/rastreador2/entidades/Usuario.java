@@ -7,7 +7,13 @@ public class Usuario {
     private Integer activo;
     private String image_path;
 
-    public Usuario(Integer id, String nombre, String phone_number, Integer activo, String image_path) {
+    public Usuario (
+            Integer id,
+            String nombre,
+            String phone_number,
+            Integer activo,
+            String image_path
+    ) {
         this.id = id;
         this.phone_number = phone_number;
         this.nombre = nombre;
