@@ -13,6 +13,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -65,7 +66,7 @@ public class masinfor extends AppCompatActivity {
         userName = findViewById(R.id.operatorName);
         userName.setText(operator.getNombre());
         userPhone = findViewById(R.id.operatorNumber);
-        userPhone.setText(operator.getPhone_number());
+        userPhone.setText(String.format("%s (Click para marcar)", operator.getPhone_number()));
         operatorImage = findViewById(R.id.operatorImage);
         File file = new File(operator.getImage_path());
         try {
@@ -74,6 +75,15 @@ public class masinfor extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        userPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse(String.format("tel:%s", operator.getPhone_number())));
+                startActivity(intent);
+            }
+        });
     }
 
 }
