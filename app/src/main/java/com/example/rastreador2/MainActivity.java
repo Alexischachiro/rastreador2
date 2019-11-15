@@ -102,7 +102,7 @@ public class MainActivity extends FragmentActivity {
 
         messageTV = findViewById(R.id.message);
         numberTV = findViewById(R.id.number);
-        numberTV.setText(tool_phone_id);
+        numberTV.setText(tool_name);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED)
         {
