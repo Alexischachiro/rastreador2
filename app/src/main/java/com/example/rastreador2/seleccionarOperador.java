@@ -64,10 +64,6 @@ public class seleccionarOperador extends AppCompatActivity {
             listViewUsuarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                    Log.d("ONCLICK", "item " + listViewUsuarios.getItemAtPosition(position));
-                    Log.d("ONCLICK", "position " + position );
-                    Log.d("ONCLICK", "id " + id);
-                    Log.d("ONCLICK", "view " + view.toString());
                     setSelectedUser(position);
                 }
             });

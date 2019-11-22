@@ -163,7 +163,6 @@ public class usuarioRepo {
 
     public ArrayList<Usuario> getNonActive() {
         SQLiteDatabase db = conn.getReadableDatabase();
-        Usuario usuario = new Usuario();
         ArrayList<Usuario> usuarios = new ArrayList<>();
         String [] fields = {
                 usuarioConsts.ID_COLUMN_NAME,
@@ -184,6 +183,7 @@ public class usuarioRepo {
                     null
             );
             while(cursor.moveToNext()) {
+                Usuario usuario = new Usuario();
                 usuario.setId(cursor.getInt(0));
                 usuario.setPhone_number(cursor.getString(1));
                 usuario.setNombre(cursor.getString(2));
